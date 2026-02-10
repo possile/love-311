@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💝 Happy Valentine's Day</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #fbb034 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts Background */
+        .heart-bg {
+            position: fixed;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.3);
+            animation: float-hearts 15s infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes float-hearts {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 30px 80px rgba(255, 107, 157, 0.4);
+            max-width: 550px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: slideIn 0.8s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .big-heart {
+            font-size: 5rem;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            10%, 30% {
+                transform: scale(0.9);
+            }
+            20%, 40%, 60%, 80% {
+                transform: scale(1.1);
+            }
+            50%, 70% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            color: #ff6b9d;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            border: 2px solid #ffb3d9;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #ff6b9d;
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            margin: 0.5rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #ddd, #eee);
+            color: #666;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Valentine Card Section */
+        .valentine-card {
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .couple-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            margin: 2rem auto;
+            object-fit: cover;
+            border: 8px solid #ff6b9d;
+            box-shadow: 0 20px 50px rgba(255, 107, 157, 0.3);
+            animation: photoGlow 2s infinite;
+        }
+
+        @keyframes photoGlow {
+            0%, 100% {
+                box-shadow: 0 20px 50px rgba(255, 107, 157, 0.3);
+            }
+            50% {
+                box-shadow: 0 20px 60px rgba(255, 107, 157, 0.6);
+            }
+        }
+
+        .love-message {
+            background: linear-gradient(135deg, #fff0f6, #ffe6f0);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border-left: 5px solid #ff6b9d;
+            font-style: italic;
+            color: #c06c84;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Question Section */
+        .question-section {
+            margin: 2rem 0;
+        }
+
+        .question-text {
+            font-size: 1.8rem;
+            color: #ff6b9d;
+            font-weight: bold;
+            margin: 2rem 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Celebration Section */
+        .celebration {
+            animation: celebrationPop 0.5s ease;
+        }
+
+        @keyframes celebrationPop {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            font-size: 2.5rem;
+            animation: confetti-fall 4s linear;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .sparkle {
+            position: fixed;
+            font-size: 2rem;
+            animation: sparkle 2s ease-out;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Upload Section */
+        .upload-area {
+            border: 3px dashed #ff6b9d;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #fff0f6;
+        }
+
+        .upload-area:hover {
+            background: #ffe6f0;
+            border-color: #ff8fab;
+        }
+
+        .preview-photo {
+            max-width: 250px;
+            max-height: 250px;
+            margin: 1.5rem auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .preview-photo.active {
+            display: block;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ffb3d9;
+            border-radius: 15px;
+            font-family: inherit;
+            font-size: 1rem;
+            margin: 1rem 0;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #ff6b9d;
+        }
+
+        .countdown {
+            font-size: 3rem;
+            color: #ff6b9d;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        /* Response Messages */
+        .response-message {
+            font-size: 1.5rem;
+            color: #ff6b9d;
+            margin: 1.5rem 0;
+            font-weight: 600;
+        }
+
+        .sad-emoji {
+            font-size: 4rem;
+            margin: 1rem 0;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .big-heart {
+                font-size: 4rem;
+            }
+
+            .couple-photo {
+                width: 220px;
+                height: 220px;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+            }
+        }
+
+        .hearts-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes hearts-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div id="heartsBackground"></div>
+
+    <div class="container">
+        <!-- Name Input Section -->
+        <div id="nameInputSection">
+            <div class="big-heart">💝</div>
+            <h1>Happy Valentine's Day!</h1>
+            <p>Someone special has a message for you...</p>
+            <p style="font-size: 0.95rem; color: #999;">Enter your name to see your personalized Valentine's gift</p>
+            <input type="text" id="nameInput" placeholder="Enter your name..." />
+            <button class="btn" onclick="checkName()">See My Gift 💖</button>
+        </div>
+
+        <!-- Setup Section (for sender) -->
+        <div id="setupSection" class="hidden">
+            <div class="big-heart">📝</div>
+            <h1>Create Your Valentine's Gift</h1>
+            <p>Set up a personalized Valentine's message for someone special!</p>
+            
+            <input type="text" id="recipientName" placeholder="Their name (e.g., Sarah, John)..." />
+            
+            <div class="upload-area" onclick="document.getElementById('photoInput').click()">
+                <p style="font-size: 2rem; margin-bottom: 0.5rem;">📷</p>
+                <p style="color: #ff6b9d; font-weight: 600;">Upload a photo of you two</p>
+                <small style="color: #999;">Click or drag & drop (JPG, PNG - max 5MB)</small>
+            </div>
+            
+            <input type="file" id="photoInput" accept="image/*" onchange="handlePhotoUpload(event)" style="display: none;">
+            <img id="previewPhoto" class="preview-photo" src="">
+            
+            <textarea id="loveMessage" placeholder="Write your love message here...
+
+Example:
+You make every day brighter! From the moment we met, you've been my sunshine. Will you be my Valentine? ❤️"></textarea>
+            
+            <button class="btn" onclick="saveValentine()" id="saveBtn">Create Valentine Gift 💝</button>
+            <button class="btn btn-no" onclick="resetToInput()">Cancel</button>
+        </div>
+
+        <!-- Valentine Card Section -->
+        <div id="valentineSection" class="hidden valentine-card">
+            <div class="big-heart">💕</div>
+            <h1 id="greetingName"></h1>
+            <img id="couplePhoto" class="couple-photo" src="" alt="You & Me">
+            
+            <div class="love-message" id="loveMessageDisplay"></div>
+            
+            <div class="question-section">
+                <p class="question-text">Will you be my Valentine? 💖</p>
+                <div class="buttons-container">
+                    <button class="btn" onclick="sayYes()">Yes! 💕</button>
+                    <button class="btn btn-no" id="noBtn" onclick="sayNo()">No 😢</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Yes Response Section -->
+        <div id="yesSection" class="hidden celebration">
+            <div class="big-heart">🎉</div>
+            <h1 style="color: #ff6b9d;">Yay! You said YES! 💕</h1>
+            <img id="yesPhoto" class="couple-photo" src="" alt="Celebration">
+            
+            <div class="love-message">
+                <p style="font-size: 1.5rem; color: #ff6b9d;">🎊 This is the best Valentine's Day ever! 🎊</p>
+                <p style="margin-top: 1rem;">Thank you for making me the happiest person alive! I can't wait to spend this special day with you! 💖</p>
+            </div>
+            
+            <div class="countdown" id="countdown"></div>
+            <p style="color: #999; margin-top: 0.5rem;">Until Valentine's Day! ❤️</p>
+            
+            <button class="btn" onclick="resetView()">Create Another Gift 💝</button>
+        </div>
+
+        <!-- No Response Section -->
+        <div id="noSection" class="hidden">
+            <div class="sad-emoji">😢</div>
+            <h1 style="color: #c06c84;">Oh no...</h1>
+            <p class="response-message">Are you sure? Maybe you clicked by mistake? 🥺</p>
+            
+            <div class="buttons-container">
+                <button class="btn" onclick="backToQuestion()">I changed my mind! 💕</button>
+                <button class="btn btn-no" onclick="finalNo()">I'm sure...</button>
+            </div>
+        </div>
+
+        <!-- Final No Section -->
+        <div id="finalNoSection" class="hidden">
+            <div class="sad-emoji">💔</div>
+            <h1 style="color: #999;">Okay... I understand</h1>
+            <p style="color: #999;">Maybe next time... 😔</p>
+            <p style="color: #ccc; font-size: 0.9rem; margin-top: 2rem;">But I'll always care about you ❤️</p>
+            <button class="btn btn-no" onclick="resetView()" style="margin-top: 2rem;">Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        let valentines = JSON.parse(localStorage.getItem('valentineGifts')) || {};
+        let currentRecipient = null;
+        let noClickCount = 0;
+
+        // Initialize floating hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('heartsBackground');
+            const hearts = ['💕', '💖', '💗', '💝', '💓', '💞'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart-bg';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 15000);
+            }, 2000);
+        }
+
+        createFloatingHearts();
+
+        // Check if name exists
+        function checkName() {
+            const name = document.getElementById('nameInput').value.trim();
+            const nameKey = name.toLowerCase();
+
+            if (!name) {
+                alert('Please enter your name! 💕');
+                return;
+            }
+
+            if (valentines[nameKey]) {
+                currentRecipient = nameKey;
+                showValentineCard(valentines[nameKey]);
+            } else {
+                // Ask if they want to create one
+                if (confirm(`No Valentine's gift found for ${name}. Would you like to create one for someone special?`)) {
+                    showSetupSection(name);
+                }
+            }
+        }
+
+        // Show setup section
+        function showSetupSection(senderName = '') {
+            hideAllSections();
+            document.getElementById('setupSection').classList.remove('hidden');
+        }
+
+        // Handle photo upload
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Photo is too large! Please choose one under 5MB 💕');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('previewPhoto').src = e.target.result;
+                document.getElementById('previewPhoto').classList.add('active');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Drag and drop
+        const uploadArea = document.querySelector('.upload-area');
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.background = '#ffe6f0';
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.background = '#fff0f6';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.background = '#fff0f6';
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('photoInput').files = files;
+                handlePhotoUpload({ target: { files: files } });
+            }
+        });
+
+        // Save Valentine
+        function saveValentine() {
+            const recipientName = document.getElementById('recipientName').value.trim();
+            const photo = document.getElementById('previewPhoto').src;
+            const message = document.getElementById('loveMessage').value.trim();
+
+            if (!recipientName) {
+                alert('Please enter their name! 💕');
+                return;
+            }
+
+            if (!photo) {
+                alert('Please upload a photo! 📷');
+                return;
+            }
+
+            if (!message) {
+                alert('Please write a love message! 💌');
+                return;
+            }
+
+            const recipientKey = recipientName.toLowerCase();
+            valentines[recipientKey] = {
+                name: recipientName,
+                photo: photo,
+                message: message,
+                createdDate: new Date().toISOString()
+            };
+
+            localStorage.setItem('valentineGifts', JSON.stringify(valentines));
+            
+            alert(`✨ Valentine's gift created for ${recipientName}! ✨\n\nShare this page with them and ask them to enter their name!`);
+            resetView();
+        }
+
+        // Show Valentine Card
+        function showValentineCard(valentine) {
+            hideAllSections();
+            document.getElementById('valentineSection').classList.remove('hidden');
+            
+            document.getElementById('greetingName').textContent = `Dear ${valentine.name} 💕`;
+            document.getElementById('couplePhoto').src = valentine.photo;
+            document.getElementById('loveMessageDisplay').innerHTML = `<p>${valentine.message.replace(/\n/g, '<br>')}</p>`;
+            
+            noClickCount = 0;
+        }
+
+        // Say Yes
+        function sayYes() {
+            const valentine = valentines[currentRecipient];
+            hideAllSections();
+            document.getElementById('yesSection').classList.remove('hidden');
+            document.getElementById('yesPhoto').src = valentine.photo;
+            
+            // Launch celebration
+            launchConfetti();
+            createHeartsRain();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        // Say No (with increasing button size for Yes)
+        function sayNo() {
+            noClickCount++;
+            
+            if (noClickCount === 1) {
+                hideAllSections();
+                document.getElementById('noSection').classList.remove('hidden');
+            } else if (noClickCount === 2) {
+                // Make Yes button bigger
+                const yesBtn = document.querySelector('#noSection .btn');
+                yesBtn.style.transform = 'scale(1.2)';
+                yesBtn.textContent = 'Please say YES! 🥺💕';
+            } else {
+                finalNo();
+            }
+        }
+
+        function backToQuestion() {
+            showValentineCard(valentines[currentRecipient]);
+        }
+
+        function finalNo() {
+            hideAllSections();
+            document.getElementById('finalNoSection').classList.remove('hidden');
+        }
+
+        // Confetti
+        function launchConfetti() {
+            const emojis = ['💕', '💖', '💗', '💝', '💓', '💞', '🎉', '✨', '⭐', '🌟'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-50px';
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 100);
+            }
+        }
+
+        // Hearts Rain
+        function createHeartsRain() {
+            const hearts = ['❤️', '💕', '💖', '💗', '💝'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '-50px';
+                    heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    heart.style.animation = 'hearts-fall 4s linear';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '9999';
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 4000);
+                }, i * 150);
+            }
+        }
+
+        // Countdown to Valentine's Day
+        function updateCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            const valentinesDay = new Date(currentYear, 1, 14); // Feb 14
+            
+            if (now > valentinesDay) {
+                valentinesDay.setFullYear(currentYear + 1);
+            }
+
+            const diff = valentinesDay - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            document.getElementById('countdown').textContent = `${days}d ${hours}h`;
+        }
+
+        // Helper functions
+        function hideAllSections() {
+            document.getElementById('nameInputSection').classList.add('hidden');
+            document.getElementById('setupSection').classList.add('hidden');
+            document.getElementById('valentineSection').classList.add('hidden');
+            document.getElementById('yesSection').classList.add('hidden');
+            document.getElementById('noSection').classList.add('hidden');
+            document.getElementById('finalNoSection').classList.add('hidden');
+        }
+
+        function resetView() {
+            hideAllSections();
+            document.getElementById('nameInputSection').classList.remove('hidden');
+            document.getElementById('nameInput').value = '';
+            currentRecipient = null;
+            noClickCount = 0;
+        }
+
+        function resetToInput() {
+            document.getElementById('recipientName').value = '';
+            document.getElementById('previewPhoto').src = '';
+            document.getElementById('previewPhoto').classList.remove('active');
+            document.getElementById('loveMessage').value = '';
+            resetView();
+        }
+
+        // Enter key support
+        document.getElementById('nameInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkName();
+        });
+    </script>
+</body>
+</html>
