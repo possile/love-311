@@ -54,25 +54,43 @@ max-width:90%;
 
 h1{
 font-size:2.4rem;
-margin-bottom:60px;
+margin-bottom:50px;
 min-height:70px;
 }
 
-/* Buttons */
+/* Buttons Wrapper */
+.buttons{
+display:flex;
+justify-content:center;
+gap:40px;
+opacity:0;
+transform:scale(.5);
+transition:all .6s ease;
+}
+
+/* Individual Pop */
+.pop{
+animation:popIn .6s ease forwards;
+}
+
+@keyframes popIn{
+0%{opacity:0;transform:scale(.5);}
+80%{transform:scale(1.1);}
+100%{opacity:1;transform:scale(1);}
+}
+
 button{
 padding:18px 45px;
 font-size:20px;
 border:none;
 border-radius:50px;
 cursor:pointer;
-position:absolute;
 transition:all .3s ease;
 }
 
 #yesBtn{
 background:linear-gradient(135deg,#ff4d6d,#ff9a9e);
 color:white;
-left:30%;
 box-shadow:0 0 25px #ff4d6d;
 }
 
@@ -83,7 +101,6 @@ transform:scale(1.1);
 #noBtn{
 background:white;
 color:#ff4d6d;
-left:60%;
 }
 
 /* Reveal Section */
@@ -112,6 +129,7 @@ font-size:1.2rem;
 line-height:1.8;
 margin:20px 0;
 min-height:120px;
+white-space:pre-line;
 }
 
 .footer{
@@ -150,8 +168,11 @@ pointer-events:none;
 
 <div class="container" id="questionBox">
 <h1 id="typingQuestion"></h1>
+
+<div class="buttons" id="buttonsWrapper">
 <button id="yesBtn">YES 💕</button>
 <button id="noBtn">No 😢</button>
+</div>
 </div>
 
 <div class="container reveal" id="revealBox">
@@ -170,11 +191,11 @@ const music=document.getElementById("bgMusic");
 
 const typingQuestion=document.getElementById("typingQuestion");
 const typedMessage=document.getElementById("typedMessage");
+const buttonsWrapper=document.getElementById("buttonsWrapper");
 
 let yesSize=1;
-let noClickCount=0;
 
-/* Typing Effect Function */
+/* Typing Function */
 function typeText(element,text,speed,callback){
 let i=0;
 element.innerHTML="";
@@ -190,35 +211,46 @@ callback();
 typing();
 }
 
-/* Intro Typing */
-typeText(typingQuestion,"Will you be my Valentine? 💝",80);
+/* Intro typing then show buttons */
+typeText(
+typingQuestion,
+"Will you be my Valentine? 💝",
+80,
+()=>{
+/* Show YES first */
+buttonsWrapper.style.opacity="1";
+yesBtn.classList.add("pop");
 
-/* NO Button infinite running + clickable */
+/* Show NO after delay */
+setTimeout(()=>{
+noBtn.classList.add("pop");
+},400);
+}
+);
+
+/* NO button infinite move */
 function moveNoButton(){
 const maxX=window.innerWidth-noBtn.offsetWidth;
 const maxY=window.innerHeight-noBtn.offsetHeight;
+noBtn.style.position="absolute";
 noBtn.style.left=Math.random()*maxX+"px";
 noBtn.style.top=Math.random()*maxY+"px";
+
 yesSize+=0.1;
 yesBtn.style.transform=`scale(${yesSize})`;
 }
 
 noBtn.addEventListener("mouseover",moveNoButton);
-noBtn.addEventListener("click",()=>{
-noClickCount++;
-moveNoButton();
-});
+noBtn.addEventListener("click",moveNoButton);
 
-/* YES Click */
+/* YES click */
 yesBtn.addEventListener("click",()=>{
 questionBox.style.display="none";
 revealBox.style.display="block";
 
-/* Play music ONLY after YES */
 music.volume=0.7;
 music.play();
 
-/* Start typing romantic message */
 typeText(
 typedMessage,
 "In the tapestry of stars, your light weaves through my soul.\nIlluminating shadows, making fragmented hearts whole.\nWith every whisper of the wind, your essence dances near.\nEternal flame of love, dispelling every fear.\n\nNow that you've said YES… dinner is on me this Friday at 7PM 😉",
@@ -228,7 +260,7 @@ typedMessage,
 launchConfetti();
 });
 
-/* Floating Hearts */
+/* Hearts */
 function createHeart(){
 const heart=document.createElement("div");
 heart.classList.add("heart");
