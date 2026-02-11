@@ -242,6 +242,11 @@ noBtn.classList.add("pop");
 /* Move NO Button (Works on PC + Mobile) */
 function moveNoButton(){
 
+// 📳 Vibrate on supported devices (mobile only)
+if (navigator.vibrate) {
+    navigator.vibrate([100, 50, 150]); 
+}
+
 // Show funny message
 const randomMessage = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
 noBtn.innerText = randomMessage;
@@ -259,6 +264,7 @@ noBtn.style.position = "fixed";
 noBtn.style.left = Math.random() * maxX + "px";
 noBtn.style.top = Math.random() * maxY + "px";
 }
+
 
 /* PC hover */
 noBtn.addEventListener("mouseenter", moveNoButton);
