@@ -7,296 +7,271 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 }
 
-body {
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    background: black;
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+background:black;
 }
 
-/* Enchanted Animated Background */
-body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    top: -50%;
-    left: -50%;
-    background:
-        radial-gradient(circle at 20% 30%, #ff4d6d88 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, #ff9a9e88 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, #fbc2eb88 0%, transparent 50%),
-        radial-gradient(circle at 40% 60%, #ffd6a588 0%, transparent 50%);
-    animation: enchantedDisco 12s linear infinite;
-    z-index: -1;
-    filter: blur(12px);
+/* Animated Background */
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+top:-50%;
+left:-50%;
+background:
+radial-gradient(circle at 20% 30%, #ff4d6d88 0%, transparent 50%),
+radial-gradient(circle at 80% 70%, #ff9a9e88 0%, transparent 50%),
+radial-gradient(circle at 50% 50%, #fbc2eb88 0%, transparent 50%);
+animation:rotateBg 15s linear infinite;
+z-index:-1;
+filter:blur(12px);
 }
 
-@keyframes enchantedDisco {
-    0% { transform: rotate(0deg) scale(1); opacity: 0.8; }
-    50% { transform: rotate(180deg) scale(1.1); opacity: 1; }
-    100% { transform: rotate(360deg) scale(1); opacity: 0.8; }
+@keyframes rotateBg{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
 }
 
-.container {
-    position: relative;
-    z-index: 2;
-    max-width: 90%;
+.container{
+position:relative;
+max-width:90%;
 }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 60px;
-    text-shadow: 0 0 25px rgba(255,255,255,0.7);
+h1{
+font-size:2.4rem;
+margin-bottom:60px;
+min-height:70px;
 }
 
 /* Buttons */
-button {
-    padding: 18px 45px;
-    font-size: 20px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    position: absolute;
-    transition: all 0.3s ease;
+button{
+padding:18px 45px;
+font-size:20px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+position:absolute;
+transition:all .3s ease;
 }
 
-#yesBtn {
-    background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
-    color: white;
-    left: 30%;
-    box-shadow: 0 0 30px #ff4d6d;
+#yesBtn{
+background:linear-gradient(135deg,#ff4d6d,#ff9a9e);
+color:white;
+left:30%;
+box-shadow:0 0 25px #ff4d6d;
 }
 
-#yesBtn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 50px #ff4d6d;
+#yesBtn:hover{
+transform:scale(1.1);
 }
 
-#noBtn {
-    background: white;
-    color: #ff4d6d;
-    left: 60%;
+#noBtn{
+background:white;
+color:#ff4d6d;
+left:60%;
 }
 
 /* Reveal Section */
-.reveal {
-    display: none;
-    animation: revealAnim 2s ease forwards;
+.reveal{
+display:none;
+animation:fadeIn 1.5s ease forwards;
 }
 
-@keyframes revealAnim {
-    0% { opacity: 0; transform: scale(0.5); }
-    100% { opacity: 1; transform: scale(1); }
+@keyframes fadeIn{
+from{opacity:0;transform:scale(.7);}
+to{opacity:1;transform:scale(1);}
 }
 
-.photo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 25px 0;
-    border: 6px solid white;
-    box-shadow: 0 0 50px rgba(255,255,255,0.9);
-    animation: pulseGlow 2s infinite alternate;
+.photo{
+width:200px;
+height:200px;
+border-radius:50%;
+object-fit:cover;
+margin:25px 0;
+border:6px solid white;
+box-shadow:0 0 50px rgba(255,255,255,.9);
 }
 
-@keyframes pulseGlow {
-    0% { box-shadow: 0 0 20px rgba(255,255,255,0.5); }
-    100% { box-shadow: 0 0 60px rgba(255,255,255,1); }
+.poetic-text{
+font-size:1.2rem;
+line-height:1.8;
+margin:20px 0;
+min-height:120px;
 }
 
-.poetic-text {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    margin: 20px 0;
+.footer{
+margin-top:20px;
+font-style:italic;
 }
 
-.footer {
-    margin-top: 20px;
-    font-style: italic;
+/* Hearts */
+.heart{
+position:absolute;
+animation:floatUp 5s linear infinite;
 }
 
-/* Floating Hearts */
-.heart {
-    position: absolute;
-    animation: floatUp 5s linear infinite;
-    opacity: 0.8;
+@keyframes floatUp{
+0%{transform:translateY(100vh) scale(.5);opacity:0;}
+20%{opacity:1;}
+80%{opacity:1;}
+100%{transform:translateY(-10vh) scale(1.5);opacity:0;}
 }
 
-@keyframes floatUp {
-    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-}
-
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
 }
 </style>
 </head>
-
 <body>
 
 <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
+<source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <canvas id="confetti"></canvas>
 
 <div class="container" id="questionBox">
-    <h1>Will you be my Valentine?</h1>
-    <button id="yesBtn">YES 💕</button>
-    <button id="noBtn">No 😢</button>
+<h1 id="typingQuestion"></h1>
+<button id="yesBtn">YES 💕</button>
+<button id="noBtn">No 😢</button>
 </div>
 
 <div class="container reveal" id="revealBox">
-    <h1>She said YES! 💖</h1>
-    <img src="your-photo.jpg" class="photo">
-    <p class="poetic-text">
-        In the tapestry of stars, your light weaves through my soul,<br>
-        Illuminating shadows, making fragmented hearts whole.<br>
-        With every whisper of the wind, your essence dances near,<br>
-        Eternal flame of love, dispelling every fear.
-    </p>
-    <p class="poetic-text">
-        Now that you've said YES… dinner is on me this Friday at 7PM 😉
-    </p>
-    <div class="footer">Forever yours, Immanuel ❤️</div>
+<h1>She said YES! 💖</h1>
+<img src="your-photo.jpg" class="photo">
+<p class="poetic-text" id="typedMessage"></p>
+<div class="footer">Forever yours, Immanuel ❤️</div>
 </div>
 
 <script>
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
-const revealBox = document.getElementById("revealBox");
-const questionBox = document.getElementById("questionBox");
-const music = document.getElementById("bgMusic");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const revealBox=document.getElementById("revealBox");
+const questionBox=document.getElementById("questionBox");
+const music=document.getElementById("bgMusic");
 
-let yesSize = 1;
+const typingQuestion=document.getElementById("typingQuestion");
+const typedMessage=document.getElementById("typedMessage");
 
-/* Start Music on First Click */
-function startMusic() {
-    music.volume = 0.6;
-    music.play().catch(() => {});
-    document.removeEventListener("click", startMusic);
+let yesSize=1;
+let noClickCount=0;
+
+/* Typing Effect Function */
+function typeText(element,text,speed,callback){
+let i=0;
+element.innerHTML="";
+function typing(){
+if(i<text.length){
+element.innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,speed);
+}else if(callback){
+callback();
 }
-document.addEventListener("click", startMusic);
-
-/* NO Button Evade (Desktop + Mobile) */
-function evadeNoButton(event) {
-    const rect = noBtn.getBoundingClientRect();
-    const mouseX = event.clientX;
-    const mouseY = event.clientY;
-    const buffer = 60;
-
-    if (
-        mouseX > rect.left - buffer &&
-        mouseX < rect.right + buffer &&
-        mouseY > rect.top - buffer &&
-        mouseY < rect.bottom + buffer
-    ) {
-        const maxX = window.innerWidth - noBtn.offsetWidth;
-        const maxY = window.innerHeight - noBtn.offsetHeight;
-
-        noBtn.style.left = Math.random() * maxX + "px";
-        noBtn.style.top = Math.random() * maxY + "px";
-
-        yesSize += 0.15;
-        yesBtn.style.transform = `scale(${yesSize})`;
-        yesBtn.style.boxShadow = `0 0 ${30 * yesSize}px #ff4d6d`;
-    }
+}
+typing();
 }
 
-document.addEventListener("mousemove", evadeNoButton);
+/* Intro Typing */
+typeText(typingQuestion,"Will you be my Valentine? 💝",80);
 
-document.addEventListener("touchstart", (e) => {
-    const touch = e.touches[0];
-    evadeNoButton({
-        clientX: touch.clientX,
-        clientY: touch.clientY
-    });
+/* NO Button infinite running + clickable */
+function moveNoButton(){
+const maxX=window.innerWidth-noBtn.offsetWidth;
+const maxY=window.innerHeight-noBtn.offsetHeight;
+noBtn.style.left=Math.random()*maxX+"px";
+noBtn.style.top=Math.random()*maxY+"px";
+yesSize+=0.1;
+yesBtn.style.transform=`scale(${yesSize})`;
+}
+
+noBtn.addEventListener("mouseover",moveNoButton);
+noBtn.addEventListener("click",()=>{
+noClickCount++;
+moveNoButton();
 });
 
 /* YES Click */
-yesBtn.addEventListener("click", () => {
-    questionBox.style.display = "none";
-    revealBox.style.display = "block";
-    music.volume = 1;
-    launchConfetti();
+yesBtn.addEventListener("click",()=>{
+questionBox.style.display="none";
+revealBox.style.display="block";
+
+/* Play music ONLY after YES */
+music.volume=0.7;
+music.play();
+
+/* Start typing romantic message */
+typeText(
+typedMessage,
+"In the tapestry of stars, your light weaves through my soul.\nIlluminating shadows, making fragmented hearts whole.\nWith every whisper of the wind, your essence dances near.\nEternal flame of love, dispelling every fear.\n\nNow that you've said YES… dinner is on me this Friday at 7PM 😉",
+40
+);
+
+launchConfetti();
 });
 
 /* Floating Hearts */
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = Math.random() > 0.5 ? "💖" : "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (20 + Math.random() * 30) + "px";
-    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML=Math.random()>.5?"💖":"❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*30)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
 }
-setInterval(createHeart, 500);
+setInterval(createHeart,500);
 
 /* Confetti */
-const canvas = document.getElementById("confetti");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
-function launchConfetti() {
-    const particles = [];
+function launchConfetti(){
+const particles=[];
+for(let i=0;i<250;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*8+4,
+color:`hsl(${Math.random()*360},100%,70%)`,
+vx:Math.random()*6-3,
+vy:Math.random()*-8-4,
+gravity:.2
+});
+}
 
-    for (let i = 0; i < 250; i++) {
-        particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            size: Math.random() * 8 + 4,
-            color: `hsl(${Math.random() * 360}, 100%, 70%)`,
-            vx: Math.random() * 6 - 3,
-            vy: Math.random() * -8 - 4,
-            gravity: 0.2,
-            rotation: Math.random() * 360,
-            rotSpeed: Math.random() * 8 - 4
-        });
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        particles.forEach(p => {
-            p.vy += p.gravity;
-            p.x += p.vx;
-            p.y += p.vy;
-            p.rotation += p.rotSpeed;
-
-            ctx.save();
-            ctx.translate(p.x, p.y);
-            ctx.rotate(p.rotation * Math.PI / 180);
-            ctx.fillStyle = p.color;
-            ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
-            ctx.restore();
-        });
-
-        requestAnimationFrame(animate);
-    }
-
-    animate();
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+p.vy+=p.gravity;
+p.x+=p.vx;
+p.y+=p.vy;
+ctx.fillStyle=p.color;
+ctx.fillRect(p.x,p.y,p.size,p.size);
+});
+requestAnimationFrame(animate);
+}
+animate();
 }
 </script>
 
