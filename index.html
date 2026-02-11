@@ -183,27 +183,41 @@ pointer-events:none;
 </div>
 
 <script>
-const yesBtn=document.getElementById("yesBtn");
-const noBtn=document.getElementById("noBtn");
-const revealBox=document.getElementById("revealBox");
-const questionBox=document.getElementById("questionBox");
-const music=document.getElementById("bgMusic");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const revealBox = document.getElementById("revealBox");
+const questionBox = document.getElementById("questionBox");
+const music = document.getElementById("bgMusic");
 
-const typingQuestion=document.getElementById("typingQuestion");
-const typedMessage=document.getElementById("typedMessage");
-const buttonsWrapper=document.getElementById("buttonsWrapper");
+const typingQuestion = document.getElementById("typingQuestion");
+const typedMessage = document.getElementById("typedMessage");
+const buttonsWrapper = document.getElementById("buttonsWrapper");
 
-let yesSize=1;
+let yesSize = 1;
+
+/* Funny NO Messages */
+const funnyMessages = [
+"Are you sure? 😏",
+"Think again 👀",
+"That button is broken 😂",
+"Wrong answer ❌",
+"You sure about that? 🤨",
+"Try pressing YES instead 💕",
+"Mission failed... try again 😆",
+"You can't escape love 💘",
+"Nice try 😎",
+"Still no? Brave move 😂"
+];
 
 /* Typing Function */
-function typeText(element,text,speed,callback){
-let i=0;
-element.innerHTML="";
+function typeText(element, text, speed, callback){
+let i = 0;
+element.innerHTML = "";
 function typing(){
-if(i<text.length){
-element.innerHTML+=text.charAt(i);
+if(i < text.length){
+element.innerHTML += text.charAt(i);
 i++;
-setTimeout(typing,speed);
+setTimeout(typing, speed);
 }else if(callback){
 callback();
 }
@@ -217,31 +231,47 @@ typingQuestion,
 "Will you be my Valentine? 💝",
 80,
 ()=>{
-/* Show YES first */
 buttonsWrapper.style.opacity="1";
 yesBtn.classList.add("pop");
-
-/* Show NO after delay */
 setTimeout(()=>{
 noBtn.classList.add("pop");
 },400);
 }
 );
 
-/* NO button infinite move */
+/* Move NO Button (Works on PC + Mobile) */
 function moveNoButton(){
-const maxX=window.innerWidth-noBtn.offsetWidth;
-const maxY=window.innerHeight-noBtn.offsetHeight;
-noBtn.style.position="absolute";
-noBtn.style.left=Math.random()*maxX+"px";
-noBtn.style.top=Math.random()*maxY+"px";
 
-yesSize+=0.1;
-yesBtn.style.transform=`scale(${yesSize})`;
+// Show funny message
+const randomMessage = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+noBtn.innerText = randomMessage;
+
+// Grow YES button
+yesSize += 0.15;
+yesBtn.style.transform = `scale(${yesSize})`;
+
+// Random position
+const padding = 20;
+const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+noBtn.style.position = "fixed";
+noBtn.style.left = Math.random() * maxX + "px";
+noBtn.style.top = Math.random() * maxY + "px";
 }
 
-noBtn.addEventListener("mouseover",moveNoButton);
-noBtn.addEventListener("click",moveNoButton);
+/* PC hover */
+noBtn.addEventListener("mouseenter", moveNoButton);
+
+/* Mobile touch */
+noBtn.addEventListener("touchstart", function(e){
+e.preventDefault();
+moveNoButton();
+});
+
+/* Click (both mobile + pc) */
+noBtn.addEventListener("click", moveNoButton);
+
 
 /* YES click */
 yesBtn.addEventListener("click",()=>{
@@ -260,7 +290,8 @@ typedMessage,
 launchConfetti();
 });
 
-/* Hearts */
+
+/* Floating Hearts */
 function createHeart(){
 const heart=document.createElement("div");
 heart.classList.add("heart");
@@ -271,6 +302,7 @@ document.body.appendChild(heart);
 setTimeout(()=>heart.remove(),5000);
 }
 setInterval(createHeart,500);
+
 
 /* Confetti */
 const canvas=document.getElementById("confetti");
