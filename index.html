@@ -38,8 +38,7 @@
             justify-content: center;
             align-items: center;
 
-            padding: 30px 15px;
-            position: relative;
+            padding: 25px 15px;
         }
 
         .card {
@@ -51,12 +50,16 @@
             text-align: center;
 
             background: rgba(255, 255, 255, 0.15);
+
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
 
             border: 1px solid rgba(255, 255, 255, 0.3);
+
             border-radius: 30px;
 
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.2);
 
             animation: cardAppear 1.5s ease;
         }
@@ -97,7 +100,7 @@
             opacity: 0.95;
         }
 
-        /* TYPING CURSOR */
+        /* CURSOR */
 
         .cursor {
             display: inline-block;
@@ -109,9 +112,9 @@
 
             margin-left: 3px;
 
-            animation: blink 0.7s infinite;
-
             vertical-align: middle;
+
+            animation: blink 0.7s infinite;
         }
 
         @keyframes blink {
@@ -128,9 +131,14 @@
             opacity: 0;
             transform: translateY(30px);
 
-            animation: revealAnimation 1.5s ease forwards;
-
             margin-top: 25px;
+        }
+
+        .reveal.show {
+            display: block;
+
+            animation:
+                revealAnimation 1.5s ease forwards;
         }
 
         @keyframes revealAnimation {
@@ -142,6 +150,7 @@
 
         .reveal h2 {
             font-size: 2.4rem;
+
             margin-bottom: 25px;
 
             text-shadow:
@@ -160,12 +169,13 @@
 
             overflow: hidden;
 
-            border: 6px solid rgba(255, 255, 255, 0.8);
+            border: 6px solid rgba(255, 255, 255, 0.85);
 
             box-shadow:
                 0 10px 35px rgba(0, 0, 0, 0.25);
 
-            animation: photoFloat 4s ease-in-out infinite;
+            animation:
+                photoFloat 4s ease-in-out infinite;
         }
 
         .photo-container img {
@@ -176,6 +186,7 @@
         }
 
         @keyframes photoFloat {
+
             0%, 100% {
                 transform: translateY(0);
             }
@@ -241,20 +252,18 @@
             background: rgba(255, 255, 255, 0.4);
         }
 
-        /* FLOATING HEARTS */
+        /* HEARTS */
 
         .heart {
             position: fixed;
 
             bottom: -50px;
 
-            font-size: 25px;
-
             pointer-events: none;
 
-            animation: floatHeart linear forwards;
-
             z-index: 10;
+
+            animation: floatHeart linear forwards;
         }
 
         @keyframes floatHeart {
@@ -377,7 +386,7 @@
             </div>
 
 
-            <!-- GOOD MORNING MESSAGE -->
+            <!-- MAIN MESSAGE -->
 
             <div class="reveal" id="reveal">
 
@@ -398,15 +407,13 @@
                 </div>
 
 
-                <!-- TYPED MESSAGE -->
+                <!-- MESSAGE -->
 
                 <div
                     class="message"
                     id="typedMessage">
                 </div>
 
-
-                <!-- FOOTER -->
 
                 <div class="footer">
 
@@ -415,13 +422,13 @@
                 </div>
 
 
-                <!-- MUSIC CONTROL -->
+                <!-- MUSIC -->
 
                 <button
                     class="music-button"
                     id="musicButton">
 
-                    🎵 Play Music
+                    🎵 Start Music
 
                 </button>
 
@@ -432,11 +439,12 @@
     </div>
 
 
-    <!-- MUSIC -->
+    <!-- MUSIC FILE -->
 
     <audio
         id="music"
-        src="music.mp3">
+        src="music.mp3"
+        preload="auto">
     </audio>
 
 
@@ -466,10 +474,12 @@
 
 
         /* =========================
-           MUSIC TIMER
+           VARIABLES
         ========================= */
 
         let musicTimer = null;
+
+        let musicStarted = false;
 
 
         /* =========================
@@ -512,14 +522,127 @@
 
             }
 
-
             type();
-
         }
 
 
         /* =========================
-           INTRO TYPING
+           MUSIC
+        ========================= */
+
+        function startMusic() {
+
+            if (musicStarted) {
+                return;
+            }
+
+            musicStarted = true;
+
+            music.currentTime = 0;
+
+            music.play()
+                .then(function () {
+
+                    musicButton.innerHTML =
+                        "🔇 Pause Music";
+
+                    startMusicTimer();
+
+                })
+                .catch(function () {
+
+                    /*
+                       Browser blocked autoplay.
+                       User can press the button.
+                    */
+
+                    musicStarted = false;
+
+                    musicButton.innerHTML =
+                        "🎵 Start Music";
+
+                });
+        }
+
+
+        /* =========================
+           40 SECOND TIMER
+        ========================= */
+
+        function startMusicTimer() {
+
+            clearTimeout(musicTimer);
+
+            musicTimer =
+                setTimeout(function () {
+
+                    music.pause();
+
+                    music.currentTime = 0;
+
+                    musicStarted = false;
+
+                    musicButton.innerHTML =
+                        "🎵 Start Music";
+
+                }, 40000);
+        }
+
+
+        /* =========================
+           MUSIC BUTTON
+        ========================= */
+
+        musicButton.addEventListener(
+            "click",
+            function () {
+
+                if (music.paused) {
+
+                    musicStarted = true;
+
+                    music.currentTime = 0;
+
+                    music.play();
+
+                    musicButton.innerHTML =
+                        "🔇 Pause Music";
+
+                    startMusicTimer();
+
+                } else {
+
+                    music.pause();
+
+                    clearTimeout(musicTimer);
+
+                    musicStarted = false;
+
+                    musicButton.innerHTML =
+                        "🎵 Start Music";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           START MUSIC ON PAGE LOAD
+        ========================= */
+
+        window.addEventListener(
+            "load",
+            function () {
+
+                startMusic();
+
+            }
+        );
+
+
+        /* =========================
+           INTRO
         ========================= */
 
         typeText(
@@ -566,36 +689,10 @@
 
         function showMessage() {
 
-            reveal.style.display = "block";
+            reveal.classList.add("show");
 
 
-            /* Start music */
-
-            music.currentTime = 0;
-
-            music.play().then(function () {
-
-                musicButton.innerHTML =
-                    "🔇 Pause Music";
-
-
-                startMusicTimer();
-
-            }).catch(function () {
-
-                /*
-                   Browser may block automatic
-                   music playback until the user
-                   interacts with the page.
-                */
-
-                musicButton.innerHTML =
-                    "🎵 Play Music";
-
-            });
-
-
-            /* Type main message */
+            /* Main message */
 
             setTimeout(function () {
 
@@ -622,75 +719,16 @@ Have a beautiful morning, sweetheart. ☀️💕`,
             }, 700);
 
 
-            /* Effects */
+            /* Hearts */
 
             createHearts();
+
+
+            /* Confetti */
 
             createConfetti();
 
         }
-
-
-        /* =========================
-           40-SECOND MUSIC TIMER
-        ========================= */
-
-        function startMusicTimer() {
-
-            clearTimeout(musicTimer);
-
-
-            musicTimer = setTimeout(function () {
-
-                music.pause();
-
-                music.currentTime = 0;
-
-                musicButton.innerHTML =
-                    "🎵 Play Music";
-
-            }, 40000);
-
-        }
-
-
-        /* =========================
-           MUSIC BUTTON
-        ========================= */
-
-        musicButton.addEventListener(
-            "click",
-            function () {
-
-                if (music.paused) {
-
-                    /*
-                       Start from beginning
-                       after it has stopped.
-                    */
-
-                    music.currentTime = 0;
-
-                    music.play();
-
-                    musicButton.innerHTML =
-                        "🔇 Pause Music";
-
-                    startMusicTimer();
-
-                } else {
-
-                    music.pause();
-
-                    clearTimeout(musicTimer);
-
-                    musicButton.innerHTML =
-                        "🎵 Play Music";
-
-                }
-
-            }
-        );
 
 
         /* =========================
@@ -708,14 +746,12 @@ Have a beautiful morning, sweetheart. ☀️💕`,
 
 
                 const hearts = [
-
                     "❤️",
                     "💕",
                     "💗",
                     "💖",
                     "💓",
                     "💞"
-
                 ];
 
 
