@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -426,11 +426,6 @@ body {
 
     display: block;
 
-    /*
-       Shows the complete image
-       without cropping it.
-    */
-
     object-fit: contain;
 
 }
@@ -483,6 +478,41 @@ body {
     font-weight: bold;
 
     margin-top: 15px;
+
+}
+
+
+/* =========================
+   ALREADY OPENED MESSAGE
+========================= */
+
+.already-opened {
+
+    text-align: center;
+
+    padding: 30px 10px;
+
+}
+
+
+.already-opened h2 {
+
+    color: #f5d98a;
+
+    font-size: 30px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.already-opened p {
+
+    color: #d7d9e8;
+
+    font-size: 18px;
+
+    line-height: 1.6;
 
 }
 
@@ -709,7 +739,6 @@ body {
             id="reveal"
         >
 
-
             <h2>
 
                 Good Morning, Beautiful ❤️
@@ -746,6 +775,36 @@ body {
 
 
         </div>
+
+
+        <!-- =========================
+             ALREADY OPENED
+        ========================== -->
+
+        <div
+            class="already-opened"
+            id="alreadyOpened"
+            style="display: none;"
+        >
+
+            <h2>
+
+                Already Opened ❤️
+
+            </h2>
+
+            <p>
+
+                This little surprise has already been opened. 😊
+
+                <br>
+
+                Have a beautiful day, Wifred ❤️
+
+            </p>
+
+        </div>
+
 
     </div>
 
@@ -815,6 +874,22 @@ const music =
 const photo =
     document.getElementById(
         "photo"
+    );
+
+
+const alreadyOpened =
+    document.getElementById(
+        "alreadyOpened"
+    );
+
+
+/* =========================
+   ONE-TIME OPENING
+========================= */
+
+const openedBefore =
+    localStorage.getItem(
+        "goodMorningSurpriseOpened"
     );
 
 
@@ -919,11 +994,6 @@ function startMusic() {
         })
         .catch(function() {
 
-            /*
-             If the browser refuses
-             playback, nothing breaks.
-            */
-
             musicStarted = false;
 
         });
@@ -966,6 +1036,31 @@ function startMusicTimer() {
 heartButton.addEventListener(
     "click",
     function() {
+
+
+        /* =====================
+           CHECK AGAIN
+        ====================== */
+
+        if (
+            localStorage.getItem(
+                "goodMorningSurpriseOpened"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        /* =====================
+           SAVE AS OPENED
+        ====================== */
+
+        localStorage.setItem(
+            "goodMorningSurpriseOpened",
+            "true"
+        );
 
 
         /* =====================
@@ -1059,56 +1154,80 @@ Have a beautiful morning, sweetheart. ☀️💕`,
 
 
 /* =========================
-   INITIAL TYPING
+   INITIAL PAGE CHECK
 ========================= */
 
-typeText(
+if (openedBefore) {
 
-    typingTitle,
+    /*
+       The surprise has already
+       been opened on this browser.
+    */
 
-    "Good Morning ❤️",
-
-    100,
-
-    function() {
-
-
-        setTimeout(
-            function() {
-
-                typeText(
-
-                    introText,
-
-                    "I have a little surprise for you...",
-
-                    60,
-
-                    function() {
+    document.querySelector(
+        ".intro"
+    ).style.display = "none";
 
 
-                        setTimeout(
-                            function() {
+    alreadyOpened.style.display =
+        "block";
 
-                                heartStart.classList.add(
-                                    "show"
-                                );
 
-                            },
-                            700
-                        );
+} else {
 
-                    }
+    /* =========================
+       INITIAL TYPING
+    ========================= */
 
-                );
+    typeText(
 
-            },
-            500
-        );
+        typingTitle,
 
-    }
+        "Good Morning ❤️",
 
-);
+        100,
+
+        function() {
+
+
+            setTimeout(
+                function() {
+
+                    typeText(
+
+                        introText,
+
+                        "I have a little surprise for you...",
+
+                        60,
+
+                        function() {
+
+
+                            setTimeout(
+                                function() {
+
+                                    heartStart.classList.add(
+                                        "show"
+                                    );
+
+                                },
+                                700
+                            );
+
+                        }
+
+                    );
+
+                },
+                500
+            );
+
+        }
+
+    );
+
+}
 
 
 /* =========================
@@ -1267,3 +1386,4 @@ function createConfetti() {
 
 </body>
 </html>
+```
