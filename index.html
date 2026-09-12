@@ -9,14 +9,24 @@
 
 <style>
 
+/* =========================
+   RESET
+========================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+/* =========================
+   BODY
+========================= */
+
 body {
     min-height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,12 +36,32 @@ body {
     font-family: Arial, sans-serif;
 
     background:
-        radial-gradient(circle at top left, #ffd6e7, transparent 40%),
-        radial-gradient(circle at bottom right, #ffb6d5, transparent 40%),
-        linear-gradient(135deg, #fff0f6, #ffcce0);
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(78, 65, 130, 0.55),
+            transparent 35%
+        ),
 
-    animation: backgroundMove 8s ease-in-out infinite alternate;
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(20, 75, 90, 0.5),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #050816,
+            #11152b,
+            #17112b,
+            #071b24
+        );
+
+    background-size: 200% 200%;
+
+    animation:
+        backgroundMove 12s ease-in-out infinite alternate;
 }
+
 
 @keyframes backgroundMove {
 
@@ -45,31 +75,50 @@ body {
 
 }
 
+
+/* =========================
+   CONTAINER
+========================= */
+
 .container {
     width: 100%;
+
     padding: 20px;
 
     display: flex;
+
     justify-content: center;
 }
 
+
+/* =========================
+   GLASS CARD
+========================= */
+
 .card {
     width: 100%;
+
     max-width: 650px;
 
     padding: 35px;
 
     border-radius: 30px;
 
-    background: rgba(255, 255, 255, 0.35);
+    background:
+        rgba(255, 255, 255, 0.08);
 
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border:
+        1px solid rgba(255, 255, 255, 0.16);
 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
 
     box-shadow:
-        0 20px 50px rgba(150, 50, 100, 0.2);
+        0 25px 70px
+        rgba(0, 0, 0, 0.45);
 
     text-align: center;
 
@@ -88,28 +137,36 @@ body {
     min-height: 150px;
 
     display: flex;
+
     flex-direction: column;
 
     justify-content: center;
+
     align-items: center;
 
 }
+
 
 .intro h1 {
 
     font-size: 42px;
 
-    color: #c2185b;
+    color: #f5d98a;
 
     margin-bottom: 15px;
 
+    text-shadow:
+        0 0 20px
+        rgba(245, 217, 138, 0.25);
+
 }
+
 
 .intro p {
 
     font-size: 19px;
 
-    color: #7a294b;
+    color: #d7d9e8;
 
 }
 
@@ -126,15 +183,17 @@ body {
 
     height: 40px;
 
-    background: #c2185b;
+    background: #f5d98a;
 
     margin-left: 4px;
 
-    animation: blink 0.8s infinite;
+    animation:
+        blink 0.8s infinite;
 
     vertical-align: middle;
 
 }
+
 
 @keyframes blink {
 
@@ -146,12 +205,12 @@ body {
 
 
 /* =========================
-   HEART START SCREEN
+   HEART START
 ========================= */
 
 .heart-start {
 
-    margin-top: 20px;
+    margin-top: 25px;
 
     display: flex;
 
@@ -173,6 +232,7 @@ body {
 
 }
 
+
 .heart-start.show {
 
     opacity: 1;
@@ -186,7 +246,7 @@ body {
 
 .tap-text {
 
-    color: #7a294b;
+    color: #d7d9e8;
 
     font-size: 17px;
 
@@ -194,6 +254,10 @@ body {
 
 }
 
+
+/* =========================
+   HEART BUTTON
+========================= */
 
 .big-heart {
 
@@ -210,19 +274,23 @@ body {
 
     filter:
         drop-shadow(
-            0 8px 15px
-            rgba(194, 24, 91, 0.35)
+            0 8px 20px
+            rgba(255, 70, 90, 0.35)
         );
 
-    transition: transform 0.3s ease;
+    transition:
+        transform 0.3s ease;
 
 }
+
 
 .big-heart:hover {
 
-    transform: scale(1.15);
+    transform:
+        scale(1.15);
 
 }
+
 
 @keyframes heartBeat {
 
@@ -246,7 +314,8 @@ body {
 
     opacity: 0;
 
-    transform: translateY(30px);
+    transform:
+        translateY(30px);
 
     pointer-events: none;
 
@@ -254,15 +323,18 @@ body {
 
 }
 
+
 .reveal.show {
 
     display: block;
 
-    animation: revealAnimation 1s ease forwards;
+    animation:
+        revealAnimation 1s ease forwards;
 
     pointer-events: auto;
 
 }
+
 
 @keyframes revealAnimation {
 
@@ -270,7 +342,8 @@ body {
 
         opacity: 0;
 
-        transform: translateY(30px);
+        transform:
+            translateY(30px);
 
     }
 
@@ -278,7 +351,8 @@ body {
 
         opacity: 1;
 
-        transform: translateY(0);
+        transform:
+            translateY(0);
 
     }
 
@@ -286,16 +360,21 @@ body {
 
 
 /* =========================
-   TITLE
+   MAIN TITLE
 ========================= */
 
 .reveal h2 {
 
-    color: #c2185b;
+    color: #f5d98a;
 
     font-size: 30px;
 
-    margin: 15px 0 25px;
+    margin:
+        15px 0 25px;
+
+    text-shadow:
+        0 0 18px
+        rgba(245, 217, 138, 0.2);
 
 }
 
@@ -312,19 +391,23 @@ body {
 
     height: 350px;
 
-    margin: 0 auto 25px;
+    margin:
+        0 auto 25px;
 
     border-radius: 25px;
 
     overflow: hidden;
 
-    border: 6px solid rgba(255, 255, 255, 0.8);
+    border:
+        5px solid
+        rgba(255, 255, 255, 0.18);
 
-    background: rgba(255, 255, 255, 0.25);
+    background:
+        rgba(0, 0, 0, 0.25);
 
     box-shadow:
-        0 10px 30px
-        rgba(194, 24, 91, 0.25);
+        0 15px 40px
+        rgba(0, 0, 0, 0.4);
 
     display: flex;
 
@@ -333,6 +416,7 @@ body {
     align-items: center;
 
 }
+
 
 .photo-container img {
 
@@ -343,8 +427,8 @@ body {
     display: block;
 
     /*
-       CONTAIN keeps the whole photo visible.
-       It will NOT crop her face or body.
+       Shows the complete image
+       without cropping it.
     */
 
     object-fit: contain;
@@ -366,12 +450,16 @@ body {
 
     line-height: 1.7;
 
-    color: #572238;
+    color: #e5e6ef;
 
     text-align: left;
 
     background:
-        rgba(255, 255, 255, 0.3);
+        rgba(255, 255, 255, 0.07);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
 
     padding: 20px;
 
@@ -390,50 +478,11 @@ body {
 
     font-size: 18px;
 
-    color: #c2185b;
+    color: #f5d98a;
 
     font-weight: bold;
 
     margin-top: 15px;
-
-}
-
-
-/* =========================
-   MUSIC BUTTON
-========================= */
-
-.music-button {
-
-    margin-top: 25px;
-
-    padding: 12px 25px;
-
-    border: none;
-
-    border-radius: 30px;
-
-    background: #c2185b;
-
-    color: white;
-
-    font-size: 16px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 5px 15px
-        rgba(194, 24, 91, 0.3);
-
-    transition: 0.3s;
-
-}
-
-.music-button:hover {
-
-    transform: scale(1.05);
-
-    background: #ad1457;
 
 }
 
@@ -458,6 +507,7 @@ body {
     z-index: 1;
 
 }
+
 
 @keyframes floatHeart {
 
@@ -498,7 +548,7 @@ body {
 
     height: 14px;
 
-    background: #ff4081;
+    background: #f5d98a;
 
     animation:
         fall linear forwards;
@@ -508,6 +558,7 @@ body {
     z-index: 3;
 
 }
+
 
 @keyframes fall {
 
@@ -532,11 +583,13 @@ body {
 
     .card {
 
-        padding: 25px 18px;
+        padding:
+            25px 18px;
 
         border-radius: 25px;
 
     }
+
 
     .intro h1 {
 
@@ -544,11 +597,13 @@ body {
 
     }
 
+
     .intro p {
 
         font-size: 16px;
 
     }
+
 
     .big-heart {
 
@@ -556,11 +611,13 @@ body {
 
     }
 
+
     .reveal h2 {
 
         font-size: 25px;
 
     }
+
 
     .photo-container {
 
@@ -569,6 +626,7 @@ body {
         max-width: 100%;
 
     }
+
 
     .message {
 
@@ -583,6 +641,7 @@ body {
 }
 
 </style>
+
 </head>
 
 
@@ -612,7 +671,7 @@ body {
             <p id="introText"></p>
 
 
-            <!-- HEART START BUTTON -->
+            <!-- HEART -->
 
             <div
                 class="heart-start"
@@ -686,18 +745,6 @@ body {
             </div>
 
 
-            <!-- MUSIC BUTTON -->
-
-            <button
-                class="music-button"
-                id="musicButton"
-            >
-
-                🔇 Music Playing
-
-            </button>
-
-
         </div>
 
     </div>
@@ -724,31 +771,51 @@ body {
 ========================= */
 
 const typingTitle =
-    document.getElementById("typingTitle");
+    document.getElementById(
+        "typingTitle"
+    );
+
 
 const introText =
-    document.getElementById("introText");
+    document.getElementById(
+        "introText"
+    );
+
 
 const heartStart =
-    document.getElementById("heartStart");
+    document.getElementById(
+        "heartStart"
+    );
+
 
 const heartButton =
-    document.getElementById("heartButton");
+    document.getElementById(
+        "heartButton"
+    );
+
 
 const reveal =
-    document.getElementById("reveal");
+    document.getElementById(
+        "reveal"
+    );
+
 
 const typedMessage =
-    document.getElementById("typedMessage");
+    document.getElementById(
+        "typedMessage"
+    );
+
 
 const music =
-    document.getElementById("music");
+    document.getElementById(
+        "music"
+    );
 
-const musicButton =
-    document.getElementById("musicButton");
 
 const photo =
-    document.getElementById("photo");
+    document.getElementById(
+        "photo"
+    );
 
 
 /* =========================
@@ -768,7 +835,7 @@ photo.onerror = function() {
 
 
 /* =========================
-   MUSIC
+   MUSIC VARIABLES
 ========================= */
 
 let musicTimer = null;
@@ -801,7 +868,10 @@ function typeText(
 
             index++;
 
-            setTimeout(type, speed);
+            setTimeout(
+                type,
+                speed
+            );
 
         }
 
@@ -844,19 +914,17 @@ function startMusic() {
     music.play()
         .then(function() {
 
-            musicButton.innerHTML =
-                "🔇 Pause Music";
-
             startMusicTimer();
 
         })
-
         .catch(function() {
 
-            musicStarted = false;
+            /*
+             If the browser refuses
+             playback, nothing breaks.
+            */
 
-            musicButton.innerHTML =
-                "🎵 Start Music";
+            musicStarted = false;
 
         });
 
@@ -864,29 +932,29 @@ function startMusic() {
 
 
 /* =========================
-   40 SECOND TIMER
+   40 SECOND MUSIC TIMER
 ========================= */
 
 function startMusicTimer() {
 
-    clearTimeout(musicTimer);
-
-
-    musicTimer = setTimeout(
-        function() {
-
-            music.pause();
-
-            music.currentTime = 0;
-
-            musicStarted = false;
-
-            musicButton.innerHTML =
-                "🎵 Start Music";
-
-        },
-        40000
+    clearTimeout(
+        musicTimer
     );
+
+
+    musicTimer =
+        setTimeout(
+            function() {
+
+                music.pause();
+
+                music.currentTime = 0;
+
+                musicStarted = false;
+
+            },
+            40000
+        );
 
 }
 
@@ -900,14 +968,19 @@ heartButton.addEventListener(
     function() {
 
 
-        /* Start music */
+        /* =====================
+           START MUSIC
+        ====================== */
 
         startMusic();
 
 
-        /* Hide heart */
+        /* =====================
+           HEART DISAPPEARS
+        ====================== */
 
-        heartStart.style.opacity = "0";
+        heartStart.style.opacity =
+            "0";
 
         heartStart.style.transform =
             "scale(1.5)";
@@ -924,15 +997,21 @@ heartButton.addEventListener(
         );
 
 
-        /* Show message */
+        /* =====================
+           SHOW MESSAGE
+        ====================== */
 
         setTimeout(
             function() {
 
-                reveal.classList.add("show");
+                reveal.classList.add(
+                    "show"
+                );
 
 
-                /* Start typing */
+                /* =================
+                   TYPE MESSAGE
+                ================== */
 
                 setTimeout(
                     function() {
@@ -962,7 +1041,9 @@ Have a beautiful morning, sweetheart. ☀️💕`,
                 );
 
 
-                /* Effects */
+                /* =================
+                   EFFECTS
+                ================== */
 
                 createHearts();
 
@@ -972,50 +1053,6 @@ Have a beautiful morning, sweetheart. ☀️💕`,
             },
             500
         );
-
-    }
-);
-
-
-/* =========================
-   MUSIC BUTTON
-========================= */
-
-musicButton.addEventListener(
-    "click",
-    function() {
-
-        if (music.paused) {
-
-            musicStarted = true;
-
-            music.currentTime = 0;
-
-
-            music.play()
-                .then(function() {
-
-                    musicButton.innerHTML =
-                        "🔇 Pause Music";
-
-                    startMusicTimer();
-
-                });
-
-        }
-
-        else {
-
-            music.pause();
-
-            clearTimeout(musicTimer);
-
-            musicStarted = false;
-
-            musicButton.innerHTML =
-                "🎵 Start Music";
-
-        }
 
     }
 );
@@ -1085,10 +1122,14 @@ function createHearts() {
 
 
             const heart =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
 
-            heart.classList.add("heart");
+            heart.classList.add(
+                "heart"
+            );
 
 
             const hearts = [
@@ -1113,17 +1154,22 @@ function createHearts() {
 
 
             heart.style.left =
-                Math.random() * 100 + "vw";
+                Math.random() * 100
+                + "vw";
 
 
             heart.style.fontSize =
-                (15 + Math.random() * 25)
-                + "px";
+                (
+                    15 +
+                    Math.random() * 25
+                ) + "px";
 
 
             heart.style.animationDuration =
-                (5 + Math.random() * 5)
-                + "s";
+                (
+                    5 +
+                    Math.random() * 5
+                ) + "s";
 
 
             document.body.appendChild(
@@ -1166,7 +1212,9 @@ function createConfetti() {
 
 
                 const piece =
-                    document.createElement("div");
+                    document.createElement(
+                        "div"
+                    );
 
 
                 piece.classList.add(
@@ -1180,8 +1228,10 @@ function createConfetti() {
 
 
                 piece.style.animationDuration =
-                    (3 + Math.random() * 4)
-                    + "s";
+                    (
+                        3 +
+                        Math.random() * 4
+                    ) + "s";
 
 
                 piece.style.transform =
@@ -1202,7 +1252,7 @@ function createConfetti() {
 
                     },
                     7000
-                ); 
+                );
 
 
             },
