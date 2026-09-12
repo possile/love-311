@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
 <title>Good Morning ❤️</title>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +20,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
     overflow-x: hidden;
+
     font-family: Arial, sans-serif;
 
     background:
@@ -30,6 +34,7 @@ body {
 }
 
 @keyframes backgroundMove {
+
     from {
         background-position: 0% 0%;
     }
@@ -37,11 +42,13 @@ body {
     to {
         background-position: 100% 100%;
     }
+
 }
 
 .container {
     width: 100%;
     padding: 20px;
+
     display: flex;
     justify-content: center;
 }
@@ -49,10 +56,13 @@ body {
 .card {
     width: 100%;
     max-width: 650px;
+
     padding: 35px;
+
     border-radius: 30px;
 
     background: rgba(255, 255, 255, 0.35);
+
     border: 1px solid rgba(255, 255, 255, 0.5);
 
     backdrop-filter: blur(15px);
@@ -62,244 +72,589 @@ body {
         0 20px 50px rgba(150, 50, 100, 0.2);
 
     text-align: center;
+
     position: relative;
+
     z-index: 2;
 }
 
+
+/* =========================
+   INTRO
+========================= */
+
 .intro {
-    min-height: 130px;
+
+    min-height: 150px;
+
     display: flex;
     flex-direction: column;
+
     justify-content: center;
+    align-items: center;
+
 }
 
 .intro h1 {
+
     font-size: 42px;
+
     color: #c2185b;
+
     margin-bottom: 15px;
+
 }
 
 .intro p {
+
     font-size: 19px;
+
     color: #7a294b;
+
 }
 
+
+/* =========================
+   CURSOR
+========================= */
+
 .cursor {
+
     display: inline-block;
+
     width: 3px;
+
     height: 40px;
+
     background: #c2185b;
+
     margin-left: 4px;
+
     animation: blink 0.8s infinite;
+
     vertical-align: middle;
+
 }
 
 @keyframes blink {
+
     50% {
         opacity: 0;
     }
+
 }
 
-.reveal {
+
+/* =========================
+   HEART START SCREEN
+========================= */
+
+.heart-start {
+
+    margin-top: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
     opacity: 0;
-    transform: translateY(30px);
+
+    transform: scale(0.7);
+
     pointer-events: none;
-    transition: all 1s ease;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+
+}
+
+.heart-start.show {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+    pointer-events: auto;
+
+}
+
+
+.tap-text {
+
+    color: #7a294b;
+
+    font-size: 17px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.big-heart {
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 85px;
+
+    cursor: pointer;
+
+    animation:
+        heartBeat 1.2s infinite;
+
+    filter:
+        drop-shadow(
+            0 8px 15px
+            rgba(194, 24, 91, 0.35)
+        );
+
+    transition: transform 0.3s ease;
+
+}
+
+.big-heart:hover {
+
+    transform: scale(1.15);
+
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+
+}
+
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal {
+
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    pointer-events: none;
+
+    display: none;
+
 }
 
 .reveal.show {
-    opacity: 1;
-    transform: translateY(0);
+
+    display: block;
+
+    animation: revealAnimation 1s ease forwards;
+
     pointer-events: auto;
+
 }
+
+@keyframes revealAnimation {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================
+   TITLE
+========================= */
 
 .reveal h2 {
+
     color: #c2185b;
+
     font-size: 30px;
+
     margin: 15px 0 25px;
+
 }
 
+
+/* =========================
+   PHOTO
+========================= */
+
 .photo-container {
-    width: 220px;
-    height: 220px;
+
+    width: 100%;
+
+    max-width: 420px;
+
+    height: 350px;
+
     margin: 0 auto 25px;
 
-    border-radius: 50%;
+    border-radius: 25px;
+
     overflow: hidden;
 
     border: 6px solid rgba(255, 255, 255, 0.8);
 
+    background: rgba(255, 255, 255, 0.25);
+
     box-shadow:
-        0 10px 30px rgba(194, 24, 91, 0.25);
+        0 10px 30px
+        rgba(194, 24, 91, 0.25);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
 }
 
 .photo-container img {
+
     width: 100%;
+
     height: 100%;
+
     display: block;
 
-    object-fit: cover;
+    /*
+       CONTAIN keeps the whole photo visible.
+       It will NOT crop her face or body.
+    */
+
+    object-fit: contain;
+
 }
 
+
+/* =========================
+   MESSAGE
+========================= */
+
 .message {
+
     min-height: 170px;
+
     white-space: pre-line;
 
     font-size: 18px;
+
     line-height: 1.7;
 
     color: #572238;
+
     text-align: left;
 
-    background: rgba(255, 255, 255, 0.3);
+    background:
+        rgba(255, 255, 255, 0.3);
+
     padding: 20px;
+
     border-radius: 20px;
 
     margin-bottom: 20px;
+
 }
+
+
+/* =========================
+   FOOTER
+========================= */
 
 .footer {
+
     font-size: 18px;
+
     color: #c2185b;
+
     font-weight: bold;
+
     margin-top: 15px;
+
 }
 
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
 .music-button {
+
     margin-top: 25px;
 
     padding: 12px 25px;
 
     border: none;
+
     border-radius: 30px;
 
     background: #c2185b;
+
     color: white;
 
     font-size: 16px;
+
     cursor: pointer;
 
-    box-shadow: 0 5px 15px rgba(194, 24, 91, 0.3);
+    box-shadow:
+        0 5px 15px
+        rgba(194, 24, 91, 0.3);
 
     transition: 0.3s;
+
 }
 
 .music-button:hover {
+
     transform: scale(1.05);
+
     background: #ad1457;
+
 }
 
-/* Floating hearts */
+
+/* =========================
+   FLOATING HEARTS
+========================= */
 
 .heart {
+
     position: fixed;
+
     bottom: -50px;
 
     font-size: 25px;
 
-    animation: floatHeart linear forwards;
+    animation:
+        floatHeart linear forwards;
 
     pointer-events: none;
+
     z-index: 1;
+
 }
 
 @keyframes floatHeart {
+
     from {
-        transform: translateY(0) rotate(0deg);
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
         opacity: 1;
+
     }
 
     to {
-        transform: translateY(-110vh) rotate(360deg);
+
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
         opacity: 0;
+
     }
+
 }
 
-/* Confetti */
+
+/* =========================
+   CONFETTI
+========================= */
 
 .confetti {
+
     position: fixed;
+
     top: -20px;
 
     width: 8px;
+
     height: 14px;
 
     background: #ff4081;
 
-    animation: fall linear forwards;
+    animation:
+        fall linear forwards;
 
     pointer-events: none;
+
     z-index: 3;
+
 }
 
 @keyframes fall {
+
     to {
-        transform: translateY(110vh) rotate(720deg);
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
         opacity: 0;
+
     }
+
 }
 
-/* Mobile */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 600px) {
 
     .card {
+
         padding: 25px 18px;
+
         border-radius: 25px;
+
     }
 
     .intro h1 {
+
         font-size: 32px;
+
     }
 
     .intro p {
+
         font-size: 16px;
+
+    }
+
+    .big-heart {
+
+        font-size: 75px;
+
     }
 
     .reveal h2 {
+
         font-size: 25px;
+
     }
 
     .photo-container {
-        width: 180px;
-        height: 180px;
+
+        height: 300px;
+
+        max-width: 100%;
+
     }
 
     .message {
+
         font-size: 16px;
+
         line-height: 1.6;
+
         padding: 16px;
+
     }
+
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <div class="container">
 
     <div class="card">
 
-        <!-- INTRO -->
+
+        <!-- =========================
+             INTRO
+        ========================== -->
 
         <div class="intro">
 
             <h1>
+
                 <span id="typingTitle"></span>
+
                 <span class="cursor"></span>
+
             </h1>
 
+
             <p id="introText"></p>
+
+
+            <!-- HEART START BUTTON -->
+
+            <div
+                class="heart-start"
+                id="heartStart"
+            >
+
+                <div class="tap-text">
+
+                    Tap the heart for your surprise ❤️
+
+                </div>
+
+
+                <button
+                    class="big-heart"
+                    id="heartButton"
+                    aria-label="Tap the heart"
+                >
+
+                    ❤️
+
+                </button>
+
+            </div>
 
         </div>
 
 
-        <!-- MAIN MESSAGE -->
+        <!-- =========================
+             MAIN MESSAGE
+        ========================== -->
 
-        <div class="reveal" id="reveal">
+        <div
+            class="reveal"
+            id="reveal"
+        >
+
 
             <h2>
+
                 Good Morning, Beautiful ❤️
+
             </h2>
 
 
@@ -309,7 +664,7 @@ body {
 
                 <img
                     id="photo"
-                    src="your-photo.jpg"
+                    src="./your-photo.jpg"
                     alt="Beautiful photo"
                 >
 
@@ -320,22 +675,28 @@ body {
 
             <div
                 class="message"
-                id="typedMessage">
-            </div>
+                id="typedMessage"
+            ></div>
 
 
             <div class="footer">
+
                 Have a beautiful day, my love ❤️
+
             </div>
 
 
-            <!-- MUSIC -->
+            <!-- MUSIC BUTTON -->
 
             <button
                 class="music-button"
-                id="musicButton">
-                🎵 Start Music
+                id="musicButton"
+            >
+
+                🔇 Music Playing
+
             </button>
+
 
         </div>
 
@@ -344,16 +705,19 @@ body {
 </div>
 
 
-<!-- MUSIC FILE -->
+<!-- =========================
+     MUSIC
+========================= -->
 
 <audio
     id="music"
     src="./music.mp3"
-    preload="auto">
-</audio>
+    preload="auto"
+></audio>
 
 
 <script>
+
 
 /* =========================
    ELEMENTS
@@ -364,6 +728,12 @@ const typingTitle =
 
 const introText =
     document.getElementById("introText");
+
+const heartStart =
+    document.getElementById("heartStart");
+
+const heartButton =
+    document.getElementById("heartButton");
 
 const reveal =
     document.getElementById("reveal");
@@ -385,13 +755,11 @@ const photo =
    PHOTO CHECK
 ========================= */
 
-photo.onerror = function () {
+photo.onerror = function() {
 
     console.error(
-        "Photo could not be loaded. Check that the file is named exactly: your-photo.jpg"
+        "Photo not found. Make sure the file is named exactly your-photo.jpg"
     );
-
-    this.style.objectFit = "contain";
 
     this.alt =
         "Photo not found. Rename your image to your-photo.jpg";
@@ -400,10 +768,11 @@ photo.onerror = function () {
 
 
 /* =========================
-   MUSIC VARIABLES
+   MUSIC
 ========================= */
 
 let musicTimer = null;
+
 let musicStarted = false;
 
 
@@ -411,11 +780,17 @@ let musicStarted = false;
    TYPING FUNCTION
 ========================= */
 
-function typeText(element, text, speed, callback) {
+function typeText(
+    element,
+    text,
+    speed,
+    callback
+) {
 
     let index = 0;
 
     element.innerHTML = "";
+
 
     function type() {
 
@@ -428,17 +803,23 @@ function typeText(element, text, speed, callback) {
 
             setTimeout(type, speed);
 
-        } else {
+        }
+
+        else {
 
             if (callback) {
+
                 callback();
+
             }
 
         }
 
     }
 
+
     type();
+
 }
 
 
@@ -449,15 +830,19 @@ function typeText(element, text, speed, callback) {
 function startMusic() {
 
     if (musicStarted) {
+
         return;
+
     }
+
 
     musicStarted = true;
 
     music.currentTime = 0;
 
+
     music.play()
-        .then(function () {
+        .then(function() {
 
             musicButton.innerHTML =
                 "🔇 Pause Music";
@@ -465,12 +850,8 @@ function startMusic() {
             startMusicTimer();
 
         })
-        .catch(function () {
 
-            /*
-             Browser may block autoplay.
-             User can press the music button.
-            */
+        .catch(function() {
 
             musicStarted = false;
 
@@ -478,31 +859,122 @@ function startMusic() {
                 "🎵 Start Music";
 
         });
+
 }
 
 
 /* =========================
-   40 SECOND MUSIC TIMER
+   40 SECOND TIMER
 ========================= */
 
 function startMusicTimer() {
 
     clearTimeout(musicTimer);
 
-    musicTimer = setTimeout(function () {
 
-        music.pause();
+    musicTimer = setTimeout(
+        function() {
 
-        music.currentTime = 0;
+            music.pause();
 
-        musicStarted = false;
+            music.currentTime = 0;
 
-        musicButton.innerHTML =
-            "🎵 Start Music";
+            musicStarted = false;
 
-    }, 40000);
+            musicButton.innerHTML =
+                "🎵 Start Music";
+
+        },
+        40000
+    );
 
 }
+
+
+/* =========================
+   HEART CLICK
+========================= */
+
+heartButton.addEventListener(
+    "click",
+    function() {
+
+
+        /* Start music */
+
+        startMusic();
+
+
+        /* Hide heart */
+
+        heartStart.style.opacity = "0";
+
+        heartStart.style.transform =
+            "scale(1.5)";
+
+
+        setTimeout(
+            function() {
+
+                heartStart.style.display =
+                    "none";
+
+            },
+            500
+        );
+
+
+        /* Show message */
+
+        setTimeout(
+            function() {
+
+                reveal.classList.add("show");
+
+
+                /* Start typing */
+
+                setTimeout(
+                    function() {
+
+                        typeText(
+
+                            typedMessage,
+
+`Good morning, my love ❤️
+
+I hope you woke up feeling peaceful and happy today.
+
+I just wanted you to know that you were one of the first thoughts on my mind this morning, and honestly, that already made my day a little brighter. 😊
+
+May your day be filled with beautiful moments, good energy, and plenty of reasons to smile.
+
+Take care of yourself for me, and remember that somewhere out here, someone is thinking about you and wishing you nothing but the best. ❤️🌹
+
+Have a beautiful morning, sweetheart. ☀️💕`,
+
+                            35
+
+                        );
+
+                    },
+                    700
+                );
+
+
+                /* Effects */
+
+                createHearts();
+
+                createConfetti();
+
+
+            },
+            500
+        );
+
+    }
+);
 
 
 /* =========================
@@ -511,7 +983,7 @@ function startMusicTimer() {
 
 musicButton.addEventListener(
     "click",
-    function () {
+    function() {
 
         if (music.paused) {
 
@@ -519,8 +991,9 @@ musicButton.addEventListener(
 
             music.currentTime = 0;
 
+
             music.play()
-                .then(function () {
+                .then(function() {
 
                     musicButton.innerHTML =
                         "🔇 Pause Music";
@@ -529,7 +1002,9 @@ musicButton.addEventListener(
 
                 });
 
-        } else {
+        }
+
+        else {
 
             music.pause();
 
@@ -547,21 +1022,7 @@ musicButton.addEventListener(
 
 
 /* =========================
-   PAGE LOAD
-========================= */
-
-window.addEventListener(
-    "load",
-    function () {
-
-        startMusic();
-
-    }
-);
-
-
-/* =========================
-   FIRST TYPING
+   INITIAL TYPING
 ========================= */
 
 typeText(
@@ -572,75 +1033,45 @@ typeText(
 
     100,
 
-    function () {
+    function() {
 
-        setTimeout(function () {
 
-            typeText(
+        setTimeout(
+            function() {
 
-                introText,
+                typeText(
 
-                "I have a little message for you...",
+                    introText,
 
-                60,
+                    "I have a little surprise for you...",
 
-                function () {
+                    60,
 
-                    setTimeout(
-                        showMessage,
-                        1000
-                    );
+                    function() {
 
-                }
 
-            );
+                        setTimeout(
+                            function() {
 
-        }, 500);
+                                heartStart.classList.add(
+                                    "show"
+                                );
+
+                            },
+                            700
+                        );
+
+                    }
+
+                );
+
+            },
+            500
+        );
 
     }
 
 );
-
-
-/* =========================
-   SHOW MESSAGE
-========================= */
-
-function showMessage() {
-
-    reveal.classList.add("show");
-
-
-    setTimeout(function () {
-
-        typeText(
-
-            typedMessage,
-
-`Good morning, my love ❤️
-
-I hope you woke up feeling peaceful and happy today.
-
-I just wanted you to know that you were one of the first thoughts on my mind this morning, and honestly, that already made my day a little brighter. 😊
-
-May your day be filled with beautiful moments, good energy, and plenty of reasons to smile.
-
-Take care of yourself for me, and remember that somewhere out here, someone is thinking about you and wishing you nothing but the best. ❤️🌹
-
-Have a beautiful morning, sweetheart. ☀️💕`,
-
-            35
-
-        );
-
-    }, 700);
-
-
-    createHearts();
-
-    createConfetti();
-
-}
 
 
 /* =========================
@@ -649,54 +1080,70 @@ Have a beautiful morning, sweetheart. ☀️💕`,
 
 function createHearts() {
 
-    setInterval(function () {
-
-        const heart =
-            document.createElement("div");
-
-        heart.classList.add("heart");
+    setInterval(
+        function() {
 
 
-        const hearts = [
-            "❤️",
-            "💕",
-            "💗",
-            "💖",
-            "💓",
-            "💞"
-        ];
+            const heart =
+                document.createElement("div");
 
 
-        heart.innerHTML =
-            hearts[
-                Math.floor(
-                    Math.random() * hearts.length
-                )
+            heart.classList.add("heart");
+
+
+            const hearts = [
+
+                "❤️",
+                "💕",
+                "💗",
+                "💖",
+                "💓",
+                "💞"
+
             ];
 
 
-        heart.style.left =
-            Math.random() * 100 + "vw";
+            heart.innerHTML =
+                hearts[
+                    Math.floor(
+                        Math.random()
+                        * hearts.length
+                    )
+                ];
 
 
-        heart.style.fontSize =
-            (15 + Math.random() * 25) + "px";
+            heart.style.left =
+                Math.random() * 100 + "vw";
 
 
-        heart.style.animationDuration =
-            (5 + Math.random() * 5) + "s";
+            heart.style.fontSize =
+                (15 + Math.random() * 25)
+                + "px";
 
 
-        document.body.appendChild(heart);
+            heart.style.animationDuration =
+                (5 + Math.random() * 5)
+                + "s";
 
 
-        setTimeout(function () {
+            document.body.appendChild(
+                heart
+            );
 
-            heart.remove();
 
-        }, 10000);
+            setTimeout(
+                function() {
 
-    }, 700);
+                    heart.remove();
+
+                },
+                10000
+            );
+
+
+        },
+        700
+    );
 
 }
 
@@ -707,38 +1154,60 @@ function createHearts() {
 
 function createConfetti() {
 
-    for (let i = 0; i < 80; i++) {
-
-        setTimeout(function () {
-
-            const piece =
-                document.createElement("div");
-
-            piece.classList.add("confetti");
+    for (
+        let i = 0;
+        i < 80;
+        i++
+    ) {
 
 
-            piece.style.left =
-                Math.random() * 100 + "vw";
+        setTimeout(
+            function() {
 
 
-            piece.style.animationDuration =
-                (3 + Math.random() * 4) + "s";
+                const piece =
+                    document.createElement("div");
 
 
-            piece.style.transform =
-                `rotate(${Math.random() * 360}deg)`;
+                piece.classList.add(
+                    "confetti"
+                );
 
 
-            document.body.appendChild(piece);
+                piece.style.left =
+                    Math.random() * 100
+                    + "vw";
 
 
-            setTimeout(function () {
+                piece.style.animationDuration =
+                    (3 + Math.random() * 4)
+                    + "s";
 
-                piece.remove();
 
-            }, 7000);
+                piece.style.transform =
+                    `rotate(
+                        ${Math.random() * 360}deg
+                    )`;
 
-        }, i * 40);
+
+                document.body.appendChild(
+                    piece
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        piece.remove();
+
+                    },
+                    7000
+                );
+
+
+            },
+            i * 40
+        );
 
     }
 
@@ -748,3 +1217,4 @@ function createConfetti() {
 
 </body>
 </html>
+```
