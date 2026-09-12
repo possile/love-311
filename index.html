@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,6 @@
             align-items: center;
         }
 
-        /* Main container */
         .container {
             width: 100%;
             min-height: 100vh;
@@ -73,7 +73,8 @@
             }
         }
 
-        /* Intro */
+        /* INTRO */
+
         .intro {
             min-height: 150px;
 
@@ -96,15 +97,20 @@
             opacity: 0.95;
         }
 
-        /* Typing cursor */
+        /* TYPING CURSOR */
+
         .cursor {
             display: inline-block;
+
             width: 2px;
             height: 1.2em;
+
             background: white;
+
             margin-left: 3px;
 
             animation: blink 0.7s infinite;
+
             vertical-align: middle;
         }
 
@@ -114,7 +120,8 @@
             }
         }
 
-        /* Reveal section */
+        /* REVEAL */
+
         .reveal {
             display: none;
 
@@ -141,7 +148,8 @@
                 0 3px 12px rgba(0, 0, 0, 0.25);
         }
 
-        /* Photo */
+        /* PHOTO */
+
         .photo-container {
             width: 220px;
             height: 220px;
@@ -149,6 +157,7 @@
             margin: 0 auto 25px;
 
             border-radius: 50%;
+
             overflow: hidden;
 
             border: 6px solid rgba(255, 255, 255, 0.8);
@@ -176,12 +185,15 @@
             }
         }
 
-        /* Message */
+        /* MESSAGE */
+
         .message {
             max-width: 650px;
+
             margin: 0 auto;
 
             font-size: 1.08rem;
+
             line-height: 1.8;
 
             white-space: pre-line;
@@ -189,27 +201,33 @@
             min-height: 250px;
         }
 
-        /* Footer */
+        /* FOOTER */
+
         .footer {
             margin-top: 30px;
 
             font-size: 1rem;
+
             opacity: 0.9;
         }
 
-        /* Music button */
+        /* MUSIC BUTTON */
+
         .music-button {
             margin-top: 25px;
 
             padding: 12px 25px;
 
             border: none;
+
             border-radius: 30px;
 
             background: rgba(255, 255, 255, 0.25);
+
             color: white;
 
             font-size: 1rem;
+
             cursor: pointer;
 
             backdrop-filter: blur(10px);
@@ -219,10 +237,12 @@
 
         .music-button:hover {
             transform: scale(1.05);
+
             background: rgba(255, 255, 255, 0.4);
         }
 
-        /* Floating hearts */
+        /* FLOATING HEARTS */
+
         .heart {
             position: fixed;
 
@@ -238,6 +258,7 @@
         }
 
         @keyframes floatHeart {
+
             0% {
                 transform:
                     translateY(0)
@@ -261,7 +282,8 @@
             }
         }
 
-        /* Confetti */
+        /* CONFETTI */
+
         .confetti {
             position: fixed;
 
@@ -278,6 +300,7 @@
         }
 
         @keyframes confettiFall {
+
             from {
                 transform:
                     translateY(0)
@@ -295,12 +318,15 @@
             }
         }
 
-        /* Mobile */
+        /* MOBILE */
+
         @media (max-width: 600px) {
 
             .card {
                 width: 94%;
+
                 padding: 30px 20px;
+
                 border-radius: 25px;
             }
 
@@ -323,11 +349,13 @@
 
             .message {
                 font-size: 1rem;
+
                 line-height: 1.7;
             }
         }
     </style>
 </head>
+
 
 <body>
 
@@ -336,6 +364,7 @@
         <div class="card">
 
             <!-- INTRO -->
+
             <div class="intro">
 
                 <h1>
@@ -348,13 +377,17 @@
             </div>
 
 
-            <!-- MESSAGE -->
+            <!-- GOOD MORNING MESSAGE -->
+
             <div class="reveal" id="reveal">
 
-                <h2>Good Morning, Beautiful ❤️</h2>
+                <h2>
+                    Good Morning, Beautiful ❤️
+                </h2>
 
 
                 <!-- PHOTO -->
+
                 <div class="photo-container">
 
                     <img
@@ -366,23 +399,29 @@
 
 
                 <!-- TYPED MESSAGE -->
+
                 <div
                     class="message"
                     id="typedMessage">
                 </div>
 
 
+                <!-- FOOTER -->
+
                 <div class="footer">
+
                     Have a beautiful day, my love ❤️
+
                 </div>
 
 
-                <!-- MUSIC -->
+                <!-- MUSIC CONTROL -->
+
                 <button
                     class="music-button"
                     id="musicButton">
 
-                    🎵 Pause Music
+                    🎵 Play Music
 
                 </button>
 
@@ -394,10 +433,10 @@
 
 
     <!-- MUSIC -->
+
     <audio
         id="music"
-        src="music.mp3"
-        loop>
+        src="music.mp3">
     </audio>
 
 
@@ -427,14 +466,27 @@
 
 
         /* =========================
+           MUSIC TIMER
+        ========================= */
+
+        let musicTimer = null;
+
+
+        /* =========================
            TYPING FUNCTION
         ========================= */
 
-        function typeText(element, text, speed, callback) {
+        function typeText(
+            element,
+            text,
+            speed,
+            callback
+        ) {
 
             let index = 0;
 
             element.innerHTML = "";
+
 
             function type() {
 
@@ -445,7 +497,10 @@
 
                     index++;
 
-                    setTimeout(type, speed);
+                    setTimeout(
+                        type,
+                        speed
+                    );
 
                 } else {
 
@@ -457,7 +512,9 @@
 
             }
 
+
             type();
+
         }
 
 
@@ -466,31 +523,40 @@
         ========================= */
 
         typeText(
+
             typingTitle,
+
             "Good Morning ❤️",
+
             100,
+
             function () {
 
                 setTimeout(function () {
 
                     typeText(
+
                         introText,
+
                         "I have a little message for you...",
+
                         60,
+
                         function () {
 
-                            setTimeout(function () {
-
-                                showMessage();
-
-                            }, 1000);
+                            setTimeout(
+                                showMessage,
+                                1000
+                            );
 
                         }
+
                     );
 
                 }, 500);
 
             }
+
         );
 
 
@@ -502,13 +568,34 @@
 
             reveal.style.display = "block";
 
+
             /* Start music */
-            music.play().catch(function () {
-                console.log("Music requires user interaction.");
+
+            music.currentTime = 0;
+
+            music.play().then(function () {
+
+                musicButton.innerHTML =
+                    "🔇 Pause Music";
+
+
+                startMusicTimer();
+
+            }).catch(function () {
+
+                /*
+                   Browser may block automatic
+                   music playback until the user
+                   interacts with the page.
+                */
+
+                musicButton.innerHTML =
+                    "🎵 Play Music";
+
             });
 
 
-            /* Start message typing */
+            /* Type main message */
 
             setTimeout(function () {
 
@@ -516,7 +603,7 @@
 
                     typedMessage,
 
-`Good morning, my Winfred ❤️
+`Good morning, my love ❤️
 
 I hope you woke up feeling peaceful and happy today.
 
@@ -545,7 +632,30 @@ Have a beautiful morning, sweetheart. ☀️💕`,
 
 
         /* =========================
-           MUSIC CONTROL
+           40-SECOND MUSIC TIMER
+        ========================= */
+
+        function startMusicTimer() {
+
+            clearTimeout(musicTimer);
+
+
+            musicTimer = setTimeout(function () {
+
+                music.pause();
+
+                music.currentTime = 0;
+
+                musicButton.innerHTML =
+                    "🎵 Play Music";
+
+            }, 40000);
+
+        }
+
+
+        /* =========================
+           MUSIC BUTTON
         ========================= */
 
         musicButton.addEventListener(
@@ -554,17 +664,28 @@ Have a beautiful morning, sweetheart. ☀️💕`,
 
                 if (music.paused) {
 
+                    /*
+                       Start from beginning
+                       after it has stopped.
+                    */
+
+                    music.currentTime = 0;
+
                     music.play();
 
                     musicButton.innerHTML =
-                        "🎵 Pause Music";
+                        "🔇 Pause Music";
+
+                    startMusicTimer();
 
                 } else {
 
                     music.pause();
 
+                    clearTimeout(musicTimer);
+
                     musicButton.innerHTML =
-                        "🔇 Play Music";
+                        "🎵 Play Music";
 
                 }
 
@@ -585,14 +706,18 @@ Have a beautiful morning, sweetheart. ☀️💕`,
 
                 heart.classList.add("heart");
 
+
                 const hearts = [
+
                     "❤️",
                     "💕",
                     "💗",
                     "💖",
                     "💓",
                     "💞"
+
                 ];
+
 
                 heart.innerHTML =
                     hearts[
@@ -602,16 +727,26 @@ Have a beautiful morning, sweetheart. ☀️💕`,
                         )
                     ];
 
+
                 heart.style.left =
                     Math.random() * 100 + "vw";
 
+
                 heart.style.fontSize =
-                    (15 + Math.random() * 25) + "px";
+                    (15 +
+                    Math.random() * 25)
+                    + "px";
+
 
                 heart.style.animationDuration =
-                    (5 + Math.random() * 5) + "s";
+                    (5 +
+                    Math.random() * 5)
+                    + "s";
 
-                document.body.appendChild(heart);
+
+                document.body.appendChild(
+                    heart
+                );
 
 
                 setTimeout(function () {
@@ -631,25 +766,43 @@ Have a beautiful morning, sweetheart. ☀️💕`,
 
         function createConfetti() {
 
-            for (let i = 0; i < 80; i++) {
+            for (
+                let i = 0;
+                i < 80;
+                i++
+            ) {
 
                 setTimeout(function () {
 
                     const piece =
                         document.createElement("div");
 
-                    piece.classList.add("confetti");
+
+                    piece.classList.add(
+                        "confetti"
+                    );
+
 
                     piece.style.left =
-                        Math.random() * 100 + "vw";
+                        Math.random() * 100
+                        + "vw";
+
 
                     piece.style.animationDuration =
-                        (3 + Math.random() * 4) + "s";
+                        (3 +
+                        Math.random() * 4)
+                        + "s";
+
 
                     piece.style.transform =
-                        `rotate(${Math.random() * 360}deg)`;
+                        `rotate(
+                            ${Math.random() * 360}deg
+                        )`;
 
-                    document.body.appendChild(piece);
+
+                    document.body.appendChild(
+                        piece
+                    );
 
 
                     setTimeout(function () {
@@ -668,3 +821,4 @@ Have a beautiful morning, sweetheart. ☀️💕`,
 
 </body>
 </html>
+```
