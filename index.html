@@ -1,540 +1,519 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Good Morning ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at top left, #ffd6e7, transparent 40%),
+        radial-gradient(circle at bottom right, #ffb6d5, transparent 40%),
+        linear-gradient(135deg, #fff0f6, #ffcce0);
+
+    animation: backgroundMove 8s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundMove {
+    from {
+        background-position: 0% 0%;
+    }
+
+    to {
+        background-position: 100% 100%;
+    }
+}
+
+.container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 650px;
+    padding: 35px;
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 50px rgba(150, 50, 100, 0.2);
+
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.intro {
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.intro h1 {
+    font-size: 42px;
+    color: #c2185b;
+    margin-bottom: 15px;
+}
+
+.intro p {
+    font-size: 19px;
+    color: #7a294b;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 40px;
+    background: #c2185b;
+    margin-left: 4px;
+    animation: blink 0.8s infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    pointer-events: none;
+    transition: all 1s ease;
+}
 
-    <title>Good Morning ❤️</title>
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.reveal h2 {
+    color: #c2185b;
+    font-size: 30px;
+    margin: 15px 0 25px;
+}
 
-        body {
-            min-height: 100vh;
-            font-family: "Segoe UI", Arial, sans-serif;
-            overflow-x: hidden;
-            color: white;
+.photo-container {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 25px;
 
-            background:
-                radial-gradient(circle at top left, #ffb6c1, transparent 35%),
-                radial-gradient(circle at bottom right, #ff69b4, transparent 40%),
-                linear-gradient(135deg, #ff758c, #ff7eb3);
+    border-radius: 50%;
+    overflow: hidden;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    border: 6px solid rgba(255, 255, 255, 0.8);
 
-        .container {
-            width: 100%;
-            min-height: 100vh;
+    box-shadow:
+        0 10px 30px rgba(194, 24, 91, 0.25);
+}
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+.photo-container img {
+    width: 100%;
+    height: 100%;
+    display: block;
 
-            padding: 25px 15px;
-        }
+    object-fit: cover;
+}
 
-        .card {
-            width: 90%;
-            max-width: 750px;
+.message {
+    min-height: 170px;
+    white-space: pre-line;
 
-            padding: 40px 30px;
+    font-size: 18px;
+    line-height: 1.7;
 
-            text-align: center;
+    color: #572238;
+    text-align: left;
 
-            background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 20px;
 
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+    margin-bottom: 20px;
+}
 
-            border: 1px solid rgba(255, 255, 255, 0.3);
+.footer {
+    font-size: 18px;
+    color: #c2185b;
+    font-weight: bold;
+    margin-top: 15px;
+}
 
-            border-radius: 30px;
+.music-button {
+    margin-top: 25px;
 
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.2);
+    padding: 12px 25px;
 
-            animation: cardAppear 1.5s ease;
-        }
+    border: none;
+    border-radius: 30px;
 
-        @keyframes cardAppear {
-            from {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-            }
+    background: #c2185b;
+    color: white;
 
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
+    font-size: 16px;
+    cursor: pointer;
 
-        /* INTRO */
+    box-shadow: 0 5px 15px rgba(194, 24, 91, 0.3);
 
-        .intro {
-            min-height: 150px;
+    transition: 0.3s;
+}
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+.music-button:hover {
+    transform: scale(1.05);
+    background: #ad1457;
+}
 
-        .intro h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
+/* Floating hearts */
 
-            text-shadow:
-                0 3px 10px rgba(0, 0, 0, 0.2);
-        }
+.heart {
+    position: fixed;
+    bottom: -50px;
 
-        .intro p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-        }
+    font-size: 25px;
 
-        /* CURSOR */
+    animation: floatHeart linear forwards;
 
-        .cursor {
-            display: inline-block;
+    pointer-events: none;
+    z-index: 1;
+}
 
-            width: 2px;
-            height: 1.2em;
+@keyframes floatHeart {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
 
-            background: white;
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
 
-            margin-left: 3px;
+/* Confetti */
 
-            vertical-align: middle;
+.confetti {
+    position: fixed;
+    top: -20px;
 
-            animation: blink 0.7s infinite;
-        }
+    width: 8px;
+    height: 14px;
 
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
+    background: #ff4081;
 
-        /* REVEAL */
+    animation: fall linear forwards;
 
-        .reveal {
-            display: none;
+    pointer-events: none;
+    z-index: 3;
+}
 
-            opacity: 0;
-            transform: translateY(30px);
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
 
-            margin-top: 25px;
-        }
+/* Mobile */
 
-        .reveal.show {
-            display: block;
+@media (max-width: 600px) {
 
-            animation:
-                revealAnimation 1.5s ease forwards;
-        }
+    .card {
+        padding: 25px 18px;
+        border-radius: 25px;
+    }
 
-        @keyframes revealAnimation {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .intro h1 {
+        font-size: 32px;
+    }
 
-        .reveal h2 {
-            font-size: 2.4rem;
+    .intro p {
+        font-size: 16px;
+    }
 
-            margin-bottom: 25px;
+    .reveal h2 {
+        font-size: 25px;
+    }
 
-            text-shadow:
-                0 3px 12px rgba(0, 0, 0, 0.25);
-        }
+    .photo-container {
+        width: 180px;
+        height: 180px;
+    }
 
-        /* PHOTO */
-
-        .photo-container {
-            width: 220px;
-            height: 220px;
-
-            margin: 0 auto 25px;
-
-            border-radius: 50%;
-
-            overflow: hidden;
-
-            border: 6px solid rgba(255, 255, 255, 0.85);
-
-            box-shadow:
-                0 10px 35px rgba(0, 0, 0, 0.25);
-
-            animation:
-                photoFloat 4s ease-in-out infinite;
-        }
-
-        .photo-container img {
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-        }
-
-        @keyframes photoFloat {
-
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* MESSAGE */
-
-        .message {
-            max-width: 650px;
-
-            margin: 0 auto;
-
-            font-size: 1.08rem;
-
-            line-height: 1.8;
-
-            white-space: pre-line;
-
-            min-height: 250px;
-        }
-
-        /* FOOTER */
-
-        .footer {
-            margin-top: 30px;
-
-            font-size: 1rem;
-
-            opacity: 0.9;
-        }
-
-        /* MUSIC BUTTON */
-
-        .music-button {
-            margin-top: 25px;
-
-            padding: 12px 25px;
-
-            border: none;
-
-            border-radius: 30px;
-
-            background: rgba(255, 255, 255, 0.25);
-
-            color: white;
-
-            font-size: 1rem;
-
-            cursor: pointer;
-
-            backdrop-filter: blur(10px);
-
-            transition: 0.3s;
-        }
-
-        .music-button:hover {
-            transform: scale(1.05);
-
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        /* HEARTS */
-
-        .heart {
-            position: fixed;
-
-            bottom: -50px;
-
-            pointer-events: none;
-
-            z-index: 10;
-
-            animation: floatHeart linear forwards;
-        }
-
-        @keyframes floatHeart {
-
-            0% {
-                transform:
-                    translateY(0)
-                    rotate(0deg)
-                    scale(0.8);
-
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            100% {
-                transform:
-                    translateY(-110vh)
-                    rotate(360deg)
-                    scale(1.3);
-
-                opacity: 0;
-            }
-        }
-
-        /* CONFETTI */
-
-        .confetti {
-            position: fixed;
-
-            width: 8px;
-            height: 14px;
-
-            top: -20px;
-
-            pointer-events: none;
-
-            z-index: 20;
-
-            animation: confettiFall linear forwards;
-        }
-
-        @keyframes confettiFall {
-
-            from {
-                transform:
-                    translateY(0)
-                    rotate(0deg);
-
-                opacity: 1;
-            }
-
-            to {
-                transform:
-                    translateY(110vh)
-                    rotate(720deg);
-
-                opacity: 0;
-            }
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 600px) {
-
-            .card {
-                width: 94%;
-
-                padding: 30px 20px;
-
-                border-radius: 25px;
-            }
-
-            .intro h1 {
-                font-size: 2.1rem;
-            }
-
-            .intro p {
-                font-size: 1rem;
-            }
-
-            .reveal h2 {
-                font-size: 1.9rem;
-            }
-
-            .photo-container {
-                width: 180px;
-                height: 180px;
-            }
-
-            .message {
-                font-size: 1rem;
-
-                line-height: 1.7;
-            }
-        }
-    </style>
+    .message {
+        font-size: 16px;
+        line-height: 1.6;
+        padding: 16px;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <div class="card">
+    <div class="card">
 
-            <!-- INTRO -->
+        <!-- INTRO -->
 
-            <div class="intro">
+        <div class="intro">
 
-                <h1>
-                    <span id="typingTitle"></span>
-                    <span class="cursor"></span>
-                </h1>
+            <h1>
+                <span id="typingTitle"></span>
+                <span class="cursor"></span>
+            </h1>
 
-                <p id="introText"></p>
+            <p id="introText"></p>
 
+        </div>
+
+
+        <!-- MAIN MESSAGE -->
+
+        <div class="reveal" id="reveal">
+
+            <h2>
+                Good Morning, Beautiful ❤️
+            </h2>
+
+
+            <!-- PHOTO -->
+
+            <div class="photo-container">
+
+                <img
+                    id="photo"
+                    src="./your-photo.jpg"
+                    alt="Beautiful photo"
+                >
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                class="message"
+                id="typedMessage">
             </div>
 
 
-            <!-- MAIN MESSAGE -->
-
-            <div class="reveal" id="reveal">
-
-                <h2>
-                    Good Morning, Beautiful ❤️
-                </h2>
-
-
-                <!-- PHOTO -->
-
-                <div class="photo-container">
-
-                    <img
-                        src="your-photo.jpg"
-                        alt="Beautiful photo"
-                    >
-
-                </div>
-
-
-                <!-- MESSAGE -->
-
-                <div
-                    class="message"
-                    id="typedMessage">
-                </div>
-
-
-                <div class="footer">
-
-                    Have a beautiful day, my love ❤️
-
-                </div>
-
-
-                <!-- MUSIC -->
-
-                <button
-                    class="music-button"
-                    id="musicButton">
-
-                    🎵 Start Music
-
-                </button>
-
+            <div class="footer">
+                Have a beautiful day, my love ❤️
             </div>
+
+
+            <!-- MUSIC -->
+
+            <button
+                class="music-button"
+                id="musicButton">
+                🎵 Start Music
+            </button>
 
         </div>
 
     </div>
 
-
-    <!-- MUSIC FILE -->
-
-    <audio
-        id="music"
-        src="music.mp3"
-        preload="auto">
-    </audio>
+</div>
 
 
-    <script>
+<!-- MUSIC FILE -->
 
-        /* =========================
-           ELEMENTS
-        ========================= */
-
-        const typingTitle =
-            document.getElementById("typingTitle");
-
-        const introText =
-            document.getElementById("introText");
-
-        const reveal =
-            document.getElementById("reveal");
-
-        const typedMessage =
-            document.getElementById("typedMessage");
-
-        const music =
-            document.getElementById("music");
-
-        const musicButton =
-            document.getElementById("musicButton");
+<audio
+    id="music"
+    src="./music.mp3"
+    preload="auto">
+</audio>
 
 
-        /* =========================
-           VARIABLES
-        ========================= */
+<script>
 
-        let musicTimer = null;
+/* =========================
+   ELEMENTS
+========================= */
 
-        let musicStarted = false;
+const typingTitle =
+    document.getElementById("typingTitle");
+
+const introText =
+    document.getElementById("introText");
+
+const reveal =
+    document.getElementById("reveal");
+
+const typedMessage =
+    document.getElementById("typedMessage");
+
+const music =
+    document.getElementById("music");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+const photo =
+    document.getElementById("photo");
 
 
-        /* =========================
-           TYPING FUNCTION
-        ========================= */
+/* =========================
+   PHOTO CHECK
+========================= */
 
-        function typeText(
-            element,
-            text,
-            speed,
-            callback
-        ) {
+photo.onerror = function () {
 
-            let index = 0;
+    console.error(
+        "Photo could not be loaded. Check that the file is named exactly: your-photo.jpg"
+    );
 
-            element.innerHTML = "";
+    this.style.objectFit = "contain";
+
+    this.alt =
+        "Photo not found. Rename your image to your-photo.jpg";
+
+};
 
 
-            function type() {
+/* =========================
+   MUSIC VARIABLES
+========================= */
 
-                if (index < text.length) {
+let musicTimer = null;
+let musicStarted = false;
 
-                    element.innerHTML +=
-                        text.charAt(index);
 
-                    index++;
+/* =========================
+   TYPING FUNCTION
+========================= */
 
-                    setTimeout(
-                        type,
-                        speed
-                    );
+function typeText(element, text, speed, callback) {
 
-                } else {
+    let index = 0;
 
-                    if (callback) {
-                        callback();
-                    }
+    element.innerHTML = "";
 
-                }
+    function type() {
 
+        if (index < text.length) {
+
+            element.innerHTML +=
+                text.charAt(index);
+
+            index++;
+
+            setTimeout(type, speed);
+
+        } else {
+
+            if (callback) {
+                callback();
             }
 
-            type();
         }
 
+    }
 
-        /* =========================
-           MUSIC
-        ========================= */
+    type();
+}
 
-        function startMusic() {
 
-            if (musicStarted) {
-                return;
-            }
+/* =========================
+   START MUSIC
+========================= */
+
+function startMusic() {
+
+    if (musicStarted) {
+        return;
+    }
+
+    musicStarted = true;
+
+    music.currentTime = 0;
+
+    music.play()
+        .then(function () {
+
+            musicButton.innerHTML =
+                "🔇 Pause Music";
+
+            startMusicTimer();
+
+        })
+        .catch(function () {
+
+            /*
+             Browser may block autoplay.
+             User can press the music button.
+            */
+
+            musicStarted = false;
+
+            musicButton.innerHTML =
+                "🎵 Start Music";
+
+        });
+}
+
+
+/* =========================
+   40 SECOND MUSIC TIMER
+========================= */
+
+function startMusicTimer() {
+
+    clearTimeout(musicTimer);
+
+    musicTimer = setTimeout(function () {
+
+        music.pause();
+
+        music.currentTime = 0;
+
+        musicStarted = false;
+
+        musicButton.innerHTML =
+            "🎵 Start Music";
+
+    }, 40000);
+
+}
+
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+musicButton.addEventListener(
+    "click",
+    function () {
+
+        if (music.paused) {
 
             musicStarted = true;
 
@@ -548,157 +527,95 @@
 
                     startMusicTimer();
 
-                })
-                .catch(function () {
-
-                    /*
-                       Browser blocked autoplay.
-                       User can press the button.
-                    */
-
-                    musicStarted = false;
-
-                    musicButton.innerHTML =
-                        "🎵 Start Music";
-
                 });
-        }
 
+        } else {
 
-        /* =========================
-           40 SECOND TIMER
-        ========================= */
-
-        function startMusicTimer() {
+            music.pause();
 
             clearTimeout(musicTimer);
 
-            musicTimer =
-                setTimeout(function () {
+            musicStarted = false;
 
-                    music.pause();
+            musicButton.innerHTML =
+                "🎵 Start Music";
 
-                    music.currentTime = 0;
-
-                    musicStarted = false;
-
-                    musicButton.innerHTML =
-                        "🎵 Start Music";
-
-                }, 40000);
         }
 
+    }
+);
 
-        /* =========================
-           MUSIC BUTTON
-        ========================= */
 
-        musicButton.addEventListener(
-            "click",
-            function () {
+/* =========================
+   PAGE LOAD
+========================= */
 
-                if (music.paused) {
+window.addEventListener(
+    "load",
+    function () {
 
-                    musicStarted = true;
+        startMusic();
 
-                    music.currentTime = 0;
+    }
+);
 
-                    music.play();
 
-                    musicButton.innerHTML =
-                        "🔇 Pause Music";
+/* =========================
+   FIRST TYPING
+========================= */
 
-                    startMusicTimer();
+typeText(
 
-                } else {
+    typingTitle,
 
-                    music.pause();
+    "Good Morning ❤️",
 
-                    clearTimeout(musicTimer);
+    100,
 
-                    musicStarted = false;
+    function () {
 
-                    musicButton.innerHTML =
-                        "🎵 Start Music";
+        setTimeout(function () {
+
+            typeText(
+
+                introText,
+
+                "I have a little message for you...",
+
+                60,
+
+                function () {
+
+                    setTimeout(
+                        showMessage,
+                        1000
+                    );
 
                 }
 
-            }
-        );
+            );
+
+        }, 500);
+
+    }
+
+);
 
 
-        /* =========================
-           START MUSIC ON PAGE LOAD
-        ========================= */
+/* =========================
+   SHOW MESSAGE
+========================= */
 
-        window.addEventListener(
-            "load",
-            function () {
+function showMessage() {
 
-                startMusic();
-
-            }
-        );
+    reveal.classList.add("show");
 
 
-        /* =========================
-           INTRO
-        ========================= */
+    setTimeout(function () {
 
         typeText(
 
-            typingTitle,
-
-            "Good Morning ❤️",
-
-            100,
-
-            function () {
-
-                setTimeout(function () {
-
-                    typeText(
-
-                        introText,
-
-                        "I have a little message for you...",
-
-                        60,
-
-                        function () {
-
-                            setTimeout(
-                                showMessage,
-                                1000
-                            );
-
-                        }
-
-                    );
-
-                }, 500);
-
-            }
-
-        );
-
-
-        /* =========================
-           SHOW MESSAGE
-        ========================= */
-
-        function showMessage() {
-
-            reveal.classList.add("show");
-
-
-            /* Main message */
-
-            setTimeout(function () {
-
-                typeText(
-
-                    typedMessage,
+            typedMessage,
 
 `Good morning, my love ❤️
 
@@ -712,149 +629,122 @@ Take care of yourself for me, and remember that somewhere out here, someone is t
 
 Have a beautiful morning, sweetheart. ☀️💕`,
 
-                    35
+            35
 
-                );
+        );
 
-            }, 700);
-
-
-            /* Hearts */
-
-            createHearts();
+    }, 700);
 
 
-            /* Confetti */
+    createHearts();
 
-            createConfetti();
+    createConfetti();
 
-        }
-
-
-        /* =========================
-           FLOATING HEARTS
-        ========================= */
-
-        function createHearts() {
-
-            setInterval(function () {
-
-                const heart =
-                    document.createElement("div");
-
-                heart.classList.add("heart");
+}
 
 
-                const hearts = [
-                    "❤️",
-                    "💕",
-                    "💗",
-                    "💖",
-                    "💓",
-                    "💞"
-                ];
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+function createHearts() {
+
+    setInterval(function () {
+
+        const heart =
+            document.createElement("div");
+
+        heart.classList.add("heart");
 
 
-                heart.innerHTML =
-                    hearts[
-                        Math.floor(
-                            Math.random() *
-                            hearts.length
-                        )
-                    ];
+        const hearts = [
+            "❤️",
+            "💕",
+            "💗",
+            "💖",
+            "💓",
+            "💞"
+        ];
 
 
-                heart.style.left =
-                    Math.random() * 100 + "vw";
+        heart.innerHTML =
+            hearts[
+                Math.floor(
+                    Math.random() * hearts.length
+                )
+            ];
 
 
-                heart.style.fontSize =
-                    (15 +
-                    Math.random() * 25)
-                    + "px";
+        heart.style.left =
+            Math.random() * 100 + "vw";
 
 
-                heart.style.animationDuration =
-                    (5 +
-                    Math.random() * 5)
-                    + "s";
+        heart.style.fontSize =
+            (15 + Math.random() * 25) + "px";
 
 
-                document.body.appendChild(
-                    heart
-                );
+        heart.style.animationDuration =
+            (5 + Math.random() * 5) + "s";
 
 
-                setTimeout(function () {
-
-                    heart.remove();
-
-                }, 10000);
-
-            }, 700);
-
-        }
+        document.body.appendChild(heart);
 
 
-        /* =========================
-           CONFETTI
-        ========================= */
+        setTimeout(function () {
 
-        function createConfetti() {
+            heart.remove();
 
-            for (
-                let i = 0;
-                i < 80;
-                i++
-            ) {
+        }, 10000);
 
-                setTimeout(function () {
+    }, 700);
 
-                    const piece =
-                        document.createElement("div");
+}
 
 
-                    piece.classList.add(
-                        "confetti"
-                    );
+/* =========================
+   CONFETTI
+========================= */
+
+function createConfetti() {
+
+    for (let i = 0; i < 80; i++) {
+
+        setTimeout(function () {
+
+            const piece =
+                document.createElement("div");
+
+            piece.classList.add("confetti");
 
 
-                    piece.style.left =
-                        Math.random() * 100
-                        + "vw";
+            piece.style.left =
+                Math.random() * 100 + "vw";
 
 
-                    piece.style.animationDuration =
-                        (3 +
-                        Math.random() * 4)
-                        + "s";
+            piece.style.animationDuration =
+                (3 + Math.random() * 4) + "s";
 
 
-                    piece.style.transform =
-                        `rotate(
-                            ${Math.random() * 360}deg
-                        )`;
+            piece.style.transform =
+                `rotate(${Math.random() * 360}deg)`;
 
 
-                    document.body.appendChild(
-                        piece
-                    );
+            document.body.appendChild(piece);
 
 
-                    setTimeout(function () {
+            setTimeout(function () {
 
-                        piece.remove();
+                piece.remove();
 
-                    }, 7000);
+            }, 7000);
 
-                }, i * 40);
+        }, i * 40);
 
-            }
+    }
 
-        }
+}
 
-    </script>
+</script>
 
 </body>
 </html>
-```
